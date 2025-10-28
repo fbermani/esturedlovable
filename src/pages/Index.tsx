@@ -4,10 +4,33 @@ import { ResidenceCard } from "@/components/ResidenceCard";
 import { TrustBadges } from "@/components/TrustBadges";
 import { HowItWorks } from "@/components/HowItWorks";
 import { Footer } from "@/components/Footer";
-import { Menu, UserCircle } from "lucide-react";
+import { ProfileSelector } from "@/components/ProfileSelector";
+import { LoginDialog } from "@/components/LoginDialog";
+import { ResidenceContactForm } from "@/components/ResidenceContactForm";
+import { Menu, UserCircle, X } from "lucide-react";
+import { useState } from "react";
 import heroImage from "@/assets/hero-residence.jpg";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 const Index = () => {
+  const [loginOpen, setLoginOpen] = useState(false);
+  const [contactFormOpen, setContactFormOpen] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const scrollToSection = (id: string) => {
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+      setMobileMenuOpen(false);
+    }
+  };
+
   // Sample data for featured residences
   const featuredResidences = [
     {
@@ -62,9 +85,12 @@ const Index = () => {
               Sin Fronteras
             </h1>
             <nav className="hidden md:flex gap-6">
-              <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Residencias
-              </a>
+              <button 
+                onClick={() => scrollToSection('featured-residences')} 
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                Buscar
+              </button>
               <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">
                 Para Estudiantes
               </a>
@@ -78,13 +104,56 @@ const Index = () => {
           </div>
           
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="sm" className="hidden md:flex">
+            <Button 
+              variant="ghost" 
+              size="sm" 
+              className="hidden md:flex"
+              onClick={() => scrollToSection('cta-section')}
+            >
               Publicar residencia
             </Button>
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
-            <Button variant="outline" size="sm" className="gap-2">
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <SheetHeader>
+                  <SheetTitle>Menú</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-8">
+                  <button 
+                    onClick={() => scrollToSection('featured-residences')}
+                    className="text-left text-base font-medium hover:text-primary transition-colors py-2"
+                  >
+                    Buscar
+                  </button>
+                  <a href="/estudiantes" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Para Estudiantes
+                  </a>
+                  <a href="/padres" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Para Padres
+                  </a>
+                  <a href="/residencias-pms" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Para Residencias
+                  </a>
+                  <Button 
+                    variant="outline" 
+                    className="w-full mt-4"
+                    onClick={() => scrollToSection('cta-section')}
+                  >
+                    Publicar residencia
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="gap-2"
+              onClick={() => setLoginOpen(true)}
+            >
               <UserCircle className="h-4 w-4" />
               <span className="hidden md:inline">Ingresar</span>
             </Button>
@@ -92,13 +161,23 @@ const Index = () => {
         </div>
       </header>
 
+      <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
+      <ResidenceContactForm open={contactFormOpen} onOpenChange={setContactFormOpen} />
+
       {/* Hero Section */}
       <section className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-secondary/10" />
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiMwMDAiIGZpbGwtb3BhY2l0eT0iMC4wMiI+PHBhdGggZD0iTTM2IDM0djItaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6bTAtNHYyaDJ2LTJoLTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-40" />
+        {/* Hero image as background */}
+        <div className="absolute inset-0">
+          <img
+            src={heroImage}
+            alt="Residencia estudiantil moderna"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85" />
+        </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
-          <div className="text-center mb-12">
+          <div className="text-center mb-8">
             <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent leading-tight">
               Tu hogar universitario<br />empieza con confianza
             </h2>
@@ -107,26 +186,21 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="flex justify-center mb-12">
-            <SearchBar />
-          </div>
-          
-          <div className="mb-16">
+          <div className="mb-12">
             <TrustBadges />
           </div>
 
-          <div className="rounded-3xl overflow-hidden shadow-2xl max-w-5xl mx-auto">
-            <img
-              src={heroImage}
-              alt="Residencia estudiantil moderna"
-              className="w-full h-[400px] md:h-[500px] object-cover"
-            />
+          <div className="flex justify-center">
+            <SearchBar />
           </div>
         </div>
       </section>
 
+      {/* Profile Selector */}
+      <ProfileSelector />
+
       {/* Featured Residences */}
-      <section className="py-16 md:py-24 bg-muted/30">
+      <section id="featured-residences" className="py-16 md:py-24 bg-background scroll-mt-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-end justify-between mb-8">
             <div>
@@ -154,7 +228,7 @@ const Index = () => {
       <HowItWorks />
 
       {/* CTA Section */}
-      <section className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary/90 to-secondary">
+      <section id="cta-section" className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary/90 to-secondary scroll-mt-16">
         <div className="max-w-4xl mx-auto px-4 text-center text-primary-foreground">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             ¿Tenés una residencia estudiantil?
@@ -163,10 +237,20 @@ const Index = () => {
             Sumá tu residencia a nuestra plataforma y conectá con miles de estudiantes que buscan un hogar confiable
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="outline" className="bg-background text-primary hover:bg-background/90 border-0">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="bg-background text-primary hover:bg-background/90 border-0"
+              onClick={() => setContactFormOpen(true)}
+            >
               Registrar mi residencia
             </Button>
-            <Button size="lg" variant="outline" className="border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10">
+            <Button 
+              size="lg" 
+              variant="outline" 
+              className="border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
+              onClick={() => window.location.href = '/residencias-pms'}
+            >
               Conocer más
             </Button>
           </div>
