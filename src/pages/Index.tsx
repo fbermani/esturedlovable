@@ -62,17 +62,17 @@ const Index = () => {
               Sin Fronteras
             </h1>
             <nav className="hidden md:flex gap-6">
-              <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
                 Residencias
               </a>
-              <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">
                 Para Estudiantes
               </a>
-              <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
+              <a href="/padres" className="text-sm font-medium hover:text-primary transition-colors">
                 Para Padres
               </a>
-              <a href="#" className="text-sm font-medium hover:text-primary transition-colors">
-                Recursos
+              <a href="/residencias-pms" className="text-sm font-medium hover:text-primary transition-colors">
+                Para Residencias
               </a>
             </nav>
           </div>
@@ -103,7 +103,7 @@ const Index = () => {
               Tu hogar universitario<br />empieza con confianza
             </h2>
             <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-              Viví, aprendé y crecé en una comunidad segura, transparente y conectada
+              Viví, estudiá y crecé en una comunidad segura, conectada y transparente
             </p>
           </div>
           

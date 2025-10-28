@@ -1,31 +1,26 @@
-import { Shield, Star, Users, CheckCircle } from "lucide-react";
+import { Shield, Calendar, Gift } from "lucide-react";
 
 export const TrustBadges = () => {
   const badges = [
     {
       icon: Shield,
-      title: "100% Verificadas",
-      description: "Todas las residencias validadas",
+      title: "Residencias y Perfiles Verificados",
+      description: "Validamos todas las residencias y usuarios",
     },
     {
-      icon: Star,
-      title: "Reseñas Reales",
-      description: "Solo de estudiantes verificados",
+      icon: Calendar,
+      title: "Disponibilidad Real",
+      description: "Información actualizada en tiempo real",
     },
     {
-      icon: Users,
-      title: "Comunidad Segura",
-      description: "Más de 10,000 estudiantes",
-    },
-    {
-      icon: CheckCircle,
-      title: "Pago Protegido",
-      description: "Transacciones 100% seguras",
+      icon: Gift,
+      title: "Beneficios Exclusivos",
+      description: "Descuentos y premios por puntos",
     },
   ];
 
   return (
-    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 max-w-5xl mx-auto">
+    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
       {badges.map((badge, index) => {
         const Icon = badge.icon;
         return (
