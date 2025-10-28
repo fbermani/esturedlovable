@@ -223,6 +223,76 @@ const ResidencePMS = () => {
         </div>
       </section>
 
+      {/* Ranking System Explanation */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Evaluación Bidireccional</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              En nuestra plataforma, no solo evaluás: también sos evaluado. Un sistema justo que beneficia a todos.
+            </p>
+          </div>
+
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-2xl">Evaluá y Mejorá Continuamente</CardTitle>
+              <CardDescription className="text-base">
+                Los rankings no son sólo para las residencias. Los estudiantes también tienen puntuaciones basadas en 
+                su comportamiento y convivencia.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <h3 className="font-bold text-lg mb-3">¿Cómo Evaluás a tus Residentes?</h3>
+                <p className="text-muted-foreground mb-4">
+                  Podés evaluar a cada estudiante en conceptos de convivencia. Tu opinión, junto con la de otros compañeros, 
+                  forma la puntuación del estudiante:
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {["Orden", "Limpieza", "Interacciones", "Empatía", "Tolerancia", "Forma de ser"].map((concept) => (
+                    <div key={concept} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
+                      <TrendingUp className="h-5 w-5 text-primary" />
+                      <span className="font-medium">{concept}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="font-bold text-lg mb-3">Beneficios del Sistema</h3>
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div className="bg-accent/10 border-l-4 border-accent p-4 rounded">
+                    <p className="font-semibold text-accent-foreground mb-2">Para tu Residencia:</p>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>✓ Atraé estudiantes responsables</li>
+                      <li>✓ Reducí conflictos de convivencia</li>
+                      <li>✓ Mejorá tu reputación y descuentos</li>
+                    </ul>
+                  </div>
+                  <div className="bg-secondary/10 border-l-4 border-secondary p-4 rounded">
+                    <p className="font-semibold mb-2">Para los Estudiantes:</p>
+                    <ul className="space-y-1 text-sm text-muted-foreground">
+                      <li>✓ Mayor transparencia y confianza</li>
+                      <li>✓ Incentivos para buen comportamiento</li>
+                      <li>✓ Mejores oportunidades de alojamiento</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="font-bold text-lg mb-3">Gestión de Advertencias</h3>
+                <p className="text-muted-foreground">
+                  Los llamados de atención o expulsiones que registres influyen en el puntaje del estudiante. 
+                  Solo aparece la advertencia en su perfil, no el detalle completo, manteniendo su privacidad 
+                  mientras asegurás transparencia en la comunidad.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Resources */}
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">

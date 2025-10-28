@@ -190,6 +190,66 @@ const ParentProfile = () => {
         </div>
       </section>
 
+      {/* Ranking System Explanation */}
+      <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Evaluación y Confianza</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Entendé cómo funciona el sistema de rankings que protege a tu hijo/a
+            </p>
+          </div>
+
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="text-2xl">Rankings: Más allá de las Residencias</CardTitle>
+              <CardDescription className="text-base">
+                Los rankings no son sólo para las residencias. Los estudiantes también son evaluados, 
+                creando un ambiente de responsabilidad y respeto mutuo.
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div>
+                <h3 className="font-bold text-lg mb-3">¿Cómo se Evalúa a los Estudiantes?</h3>
+                <p className="text-muted-foreground mb-4">
+                  La puntuación de cada estudiante es un mix entre las valoraciones de sus compañeros pasados o actuales, 
+                  y la valoración de las residencias. Esto asegura transparencia y confianza en toda la comunidad.
+                </p>
+                <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+                  {["Orden", "Limpieza", "Interacciones", "Empatía", "Tolerancia", "Forma de ser"].map((concept) => (
+                    <div key={concept} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
+                      <Shield className="h-5 w-5 text-primary" />
+                      <span className="font-medium">{concept}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="font-bold text-lg mb-3">Perfiles Completos = Mayor Confianza</h3>
+                <p className="text-muted-foreground mb-4">
+                  Cada estudiante decide qué información mostrar en su perfil público. Mientras más completo sea el perfil:
+                </p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                  <li>✓ Mejores beneficios obtiene el estudiante</li>
+                  <li>✓ Más fácil es encontrar compañeros compatibles</li>
+                  <li>✓ Mayor confianza genera en residencias y la comunidad</li>
+                </ul>
+              </div>
+
+              <div className="border-t pt-6">
+                <h3 className="font-bold text-lg mb-3">Evaluación por Residencias</h3>
+                <p className="text-muted-foreground">
+                  Las residencias también evalúan a cada estudiante. Los llamados de atención o expulsiones 
+                  influyen en el puntaje. Solo aparece la advertencia en el perfil, no el detalle de lo sucedido, 
+                  manteniendo la privacidad mientras se asegura transparencia.
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </section>
+
       {/* Security Section */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4 text-center">

@@ -31,47 +31,142 @@ const Index = () => {
     }
   };
 
-  // Sample data for featured residences
   const featuredResidences = [
     {
-      image: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=600&h=450&fit=crop",
-      title: "Residencia Universitaria Central",
-      location: "A 5 min de la UBA, Buenos Aires",
-      price: 45000,
-      rating: 4.9,
-      reviews: 127,
-      capacity: "1-2 personas",
-      verified: true,
-    },
-    {
-      image: "https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=600&h=450&fit=crop",
-      title: "Departamentos Estudiantiles Norte",
-      location: "Campus UTN, Córdoba",
-      price: 38000,
-      rating: 4.7,
-      reviews: 84,
-      capacity: "2-4 personas",
-      verified: true,
-    },
-    {
-      image: "https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=600&h=450&fit=crop",
-      title: "Casa de Estudiantes La Plata",
-      location: "Zona UNLP, La Plata",
-      price: 42000,
+      image: "/src/assets/hostel-room-1.jpg",
+      title: "Residencia San Martín",
+      location: "Centro, Buenos Aires",
+      priceMin: 38000,
+      priceMax: 55000,
       rating: 4.8,
-      reviews: 156,
-      capacity: "1 persona",
+      reviews: 127,
       verified: true,
+      availability: ["Doble", "Triple"],
+      currentResidents: 24,
+      residentsRating: 4.6,
+      highlightedService: "WiFi Alta Velocidad",
+      roommates: [
+        {
+          name: "María G.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
+          rating: 4.9,
+          description: "Estudiante de medicina, organizada y tranquila. Me gusta estudiar por las tardes y cocinar los fines de semana."
+        },
+        {
+          name: "Lucas R.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
+          rating: 4.7,
+          description: "Ingeniería, fan del deporte y música. Respetuoso con los horarios de estudio y descanso."
+        },
+        {
+          name: "Ana P.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
+          rating: 4.8,
+          description: "Estudiante de diseño, creativa y sociable. Me encanta compartir experiencias y mantener todo ordenado."
+        }
+      ]
     },
     {
-      image: "https://images.unsplash.com/photo-1536376072261-38c75010e6c9?w=600&h=450&fit=crop",
+      image: "/src/assets/hostel-common-2.jpg",
+      title: "Casa Universitaria Norte",
+      location: "Recoleta, Buenos Aires",
+      priceMin: 45000,
+      priceMax: 62000,
+      rating: 4.9,
+      reviews: 95,
+      verified: true,
+      availability: ["Individual", "Doble"],
+      currentResidents: 18,
+      residentsRating: 4.8,
+      highlightedService: "Gym Incluido",
+      roommates: [
+        {
+          name: "Sofia M.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
+          rating: 5.0,
+          description: "Derecho, disciplinada y amigable. Valoro la limpieza y el respeto mutuo."
+        },
+        {
+          name: "Diego F.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diego",
+          rating: 4.6,
+          description: "Arquitectura, ordenado y colaborativo. Me gusta la convivencia armoniosa."
+        },
+        {
+          name: "Julia S.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Julia",
+          rating: 4.9,
+          description: "Psicología, empática y organizada. Busco compañeros responsables y respetuosos."
+        }
+      ]
+    },
+    {
+      image: "/src/assets/hostel-room-3.jpg",
+      title: "Residencia del Parque",
+      location: "Palermo, Buenos Aires",
+      priceMin: 40000,
+      priceMax: 58000,
+      rating: 4.7,
+      reviews: 143,
+      verified: true,
+      availability: ["Triple", "Cuádruple"],
+      currentResidents: 32,
+      residentsRating: 4.5,
+      highlightedService: "Zona de Estudio 24hs",
+      roommates: [
+        {
+          name: "Martín L.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
+          rating: 4.8,
+          description: "Economía, responsable y tranquilo. Valoro el orden y la comunicación clara."
+        },
+        {
+          name: "Camila T.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Camila",
+          rating: 4.4,
+          description: "Comunicación social, sociable y respetuosa. Me adapto fácilmente a diferentes grupos."
+        },
+        {
+          name: "Pablo N.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pablo",
+          rating: 4.6,
+          description: "Informática, colaborativo y ordenado. Busco un ambiente de estudio tranquilo."
+        }
+      ]
+    },
+    {
+      image: "/src/assets/hostel-room-1.jpg",
       title: "Residencia Premium Palermo",
       location: "Palermo, Buenos Aires",
-      price: 52000,
+      priceMin: 48000,
+      priceMax: 68000,
       rating: 5.0,
       reviews: 93,
-      capacity: "1-2 personas",
       verified: true,
+      availability: ["Individual"],
+      currentResidents: 15,
+      residentsRating: 4.9,
+      highlightedService: "Servicio de Limpieza",
+      roommates: [
+        {
+          name: "Valentina R.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Valentina",
+          rating: 5.0,
+          description: "Medicina veterinaria, súper organizada y respetuosa. Amo los animales y la naturaleza."
+        },
+        {
+          name: "Tomás B.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tomas",
+          rating: 4.8,
+          description: "Administración, responsable y sociable. Me gusta mantener todo en orden."
+        },
+        {
+          name: "Carolina V.",
+          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carolina",
+          rating: 4.9,
+          description: "Filosofía y letras, tranquila y considerada. Valoro el respeto y la buena convivencia."
+        }
+      ]
     },
   ];
 
