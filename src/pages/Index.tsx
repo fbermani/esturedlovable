@@ -268,7 +268,7 @@ const Index = () => {
             alt="Residencia estudiantil moderna"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/95 via-background/90 to-background/85" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/98 via-background/95 to-background/92 md:from-background/96 md:via-background/92 md:to-background/88" />
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
@@ -309,7 +309,7 @@ const Index = () => {
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {featuredResidences.map((residence, index) => (
-              <ResidenceCard key={index} {...residence} />
+              <ResidenceCard key={index} {...residence} residenceId={`residence-${index + 1}`} />
             ))}
           </div>
           

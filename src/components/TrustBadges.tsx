@@ -20,7 +20,7 @@ export const TrustBadges = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-8 max-w-4xl mx-auto">
+    <div className="flex flex-col md:flex-row gap-6 md:gap-8 max-w-4xl mx-auto justify-center">
       {badges.map((badge, index) => {
         const Icon = badge.icon;
         return (

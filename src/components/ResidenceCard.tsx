@@ -5,6 +5,7 @@ import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 interface Roommate {
   name: string;
@@ -14,6 +15,7 @@ interface Roommate {
 }
 
 interface ResidenceCardProps {
+  residenceId: string;
   image: string;
   title: string;
   location: string;
@@ -30,6 +32,7 @@ interface ResidenceCardProps {
 }
 
 export const ResidenceCard = ({
+  residenceId,
   image,
   title,
   location,
@@ -45,6 +48,7 @@ export const ResidenceCard = ({
   roommates,
 }: ResidenceCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
     <Card className="overflow-hidden cursor-pointer group">
@@ -134,7 +138,11 @@ export const ResidenceCard = ({
       </CardContent>
       
       <CardFooter className="p-5 pt-0">
-        <Button variant="outline" className="w-full">
+        <Button 
+          variant="outline" 
+          className="w-full"
+          onClick={() => navigate(`/residencia/${residenceId}`)}
+        >
           Ver detalles
         </Button>
       </CardFooter>
