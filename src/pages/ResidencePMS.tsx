@@ -1,11 +1,58 @@
 import { Button } from "@/components/ui/button";
 import { PointsSystem } from "@/components/PointsSystem";
 import { Footer } from "@/components/Footer";
-import { Menu, UserCircle, LayoutDashboard, Users, CreditCard, Wrench, FileText, TrendingUp, Package, Building2 } from "lucide-react";
+import { Menu, UserCircle, LayoutDashboard, Users, CreditCard, Wrench, FileText, TrendingUp, Package, Building2, AlertTriangle, Trophy, Star, Award, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { useState } from "react";
 
 const ResidencePMS = () => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const badges = [
+    {
+      level: "Inicial",
+      icon: Building2,
+      color: "bg-gray-500",
+      requirements: "0-100 puntos",
+      description: "Nueva residencia en la plataforma. Comenzá a construir tu reputación.",
+      benefits: ["Publicación básica", "Sin descuentos en plan"]
+    },
+    {
+      level: "Bronce",
+      icon: Shield,
+      color: "bg-amber-700",
+      requirements: "100-300 puntos | 4.0+ ★",
+      description: "Buenas primeras evaluaciones. Tus residentes están satisfechos.",
+      benefits: ["5% descuento en plan mensual", "Badge visible", "Prioridad en búsquedas"]
+    },
+    {
+      level: "Plata",
+      icon: Star,
+      color: "bg-gray-400",
+      requirements: "300-600 puntos | 4.3+ ★",
+      description: "Excelente reputación. Gestión profesional reconocida por la comunidad.",
+      benefits: ["10% descuento permanente", "Destacado en resultados", "Soporte prioritario"]
+    },
+    {
+      level: "Oro",
+      icon: Trophy,
+      color: "bg-yellow-500",
+      requirements: "600-1000 puntos | 4.6+ ★",
+      description: "Residencia de referencia. Calidad superior en todos los aspectos.",
+      benefits: ["15% descuento", "Sección 'Destacadas'", "Acceso a programa embajador"]
+    },
+    {
+      level: "Platino",
+      icon: Award,
+      color: "bg-purple-600",
+      requirements: "1000+ puntos | 4.8+ ★",
+      description: "Nivel de excelencia máximo. Modelo a seguir en la industria.",
+      benefits: ["20% descuento de por vida", "Publicidad premium gratis", "Participación en desarrollo de features"]
+    }
+  ];
+
   const pmsFeatures = [
     {
       icon: Users,
@@ -74,8 +121,8 @@ const ResidencePMS = () => {
               </h1>
             </a>
             <nav className="hidden md:flex gap-6">
-              <a href="/" className="text-sm font-medium hover:text-primary transition-colors">
-                Residencias
+              <a href="/#featured-residences" className="text-sm font-medium hover:text-primary transition-colors">
+                Buscar
               </a>
               <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">
                 Para Estudiantes
@@ -90,9 +137,32 @@ const ResidencePMS = () => {
           </div>
           
           <div className="flex items-center gap-3">
-            <Button variant="ghost" size="icon" className="md:hidden">
-              <Menu className="h-5 w-5" />
-            </Button>
+            <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button variant="ghost" size="icon" className="md:hidden">
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <SheetHeader>
+                  <SheetTitle>Menú</SheetTitle>
+                </SheetHeader>
+                <nav className="flex flex-col gap-4 mt-8">
+                  <a href="/#featured-residences" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Buscar
+                  </a>
+                  <a href="/estudiantes" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Para Estudiantes
+                  </a>
+                  <a href="/padres" className="text-base font-medium hover:text-primary transition-colors py-2">
+                    Para Padres
+                  </a>
+                  <a href="/residencias-pms" className="text-base font-medium text-primary py-2">
+                    Para Residencias
+                  </a>
+                </nav>
+              </SheetContent>
+            </Sheet>
             <Button variant="outline" size="sm" className="gap-2">
               <UserCircle className="h-4 w-4" />
               <span className="hidden md:inline">Ingresar</span>
@@ -151,61 +221,77 @@ const ResidencePMS = () => {
         </div>
       </section>
 
-      {/* Benefits */}
+      {/* Benefits of System - Enhanced */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
-        <div className="max-w-5xl mx-auto px-4">
+        <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Por qué elegir nuestro PMS?</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">Beneficios del Sistema</h2>
+            <p className="text-lg text-muted-foreground">
+              Transformá tu residencia con nuestra plataforma integral
+            </p>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">1</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-2">Sincronización Automática</h3>
-                <p className="text-muted-foreground">
-                  Tu perfil público en el portal se actualiza automáticamente desde el PMS. Sin duplicar trabajo.
-                </p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+            <Card className="bg-gradient-to-br from-primary/10 to-primary/5 border-primary/20">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">1</span>
+                  </div>
+                  <CardTitle className="text-xl">Sincronización Automática</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="text-muted-foreground">
+                Tu perfil público en el portal se actualiza automáticamente desde el PMS. 
+                Disponibilidad en tiempo real sin duplicar trabajo. Los estudiantes ven exactamente 
+                qué habitaciones están disponibles en cada momento.
+              </CardContent>
+            </Card>
 
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">2</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-2">Mayor Visibilidad</h3>
-                <p className="text-muted-foreground">
-                  Apareció en las búsquedas de miles de estudiantes y padres que buscan residencias confiables.
-                </p>
-              </div>
-            </div>
+            <Card className="bg-gradient-to-br from-secondary/10 to-secondary/5 border-secondary/20">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-12 w-12 rounded-full bg-secondary/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-secondary">2</span>
+                  </div>
+                  <CardTitle className="text-xl">Mayor Visibilidad</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="text-muted-foreground">
+                Apareció en las búsquedas de miles de estudiantes y padres verificados. 
+                Aumentá tu ocupación hasta 40% con nuestra base de usuarios activos buscando alojamiento.
+              </CardContent>
+            </Card>
 
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">3</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-2">Sistema de Reputación</h3>
-                <p className="text-muted-foreground">
-                  Mejorá tu posicionamiento con buenas calificaciones y ganá descuentos en tu plan mensual.
-                </p>
-              </div>
-            </div>
+            <Card className="bg-gradient-to-br from-accent/10 to-accent/5 border-accent/20">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-12 w-12 rounded-full bg-accent/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-accent">3</span>
+                  </div>
+                  <CardTitle className="text-xl">Sistema de Reputación</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="text-muted-foreground">
+                Mejorá tu posicionamiento con buenas calificaciones y ganá hasta 20% de descuento 
+                en tu plan mensual. Las residencias mejor calificadas aparecen primero en búsquedas.
+              </CardContent>
+            </Card>
 
-            <div className="flex gap-4">
-              <div className="flex-shrink-0 h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
-                <span className="text-2xl font-bold text-primary">4</span>
-              </div>
-              <div>
-                <h3 className="font-bold text-xl mb-2">Soporte Dedicado</h3>
-                <p className="text-muted-foreground">
-                  Equipo de soporte para ayudarte con cualquier duda o problema que tengas.
-                </p>
-              </div>
-            </div>
+            <Card className="bg-gradient-to-br from-primary/10 to-secondary/10 border-primary/20">
+              <CardHeader>
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
+                    <span className="text-2xl font-bold text-primary">4</span>
+                  </div>
+                  <CardTitle className="text-xl">Soporte Dedicado 24/7</CardTitle>
+                </div>
+              </CardHeader>
+              <CardContent className="text-muted-foreground">
+                Equipo de soporte técnico disponible para ayudarte con cualquier duda o problema. 
+                Capacitación completa incluida y actualizaciones constantes sin costo adicional.
+              </CardContent>
+            </Card>
           </div>
         </div>
       </section>
@@ -216,14 +302,51 @@ const ResidencePMS = () => {
           <div className="text-center mb-8">
             <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Puntos y Badges</h2>
             <p className="text-lg text-muted-foreground">
-              Mejorá tu servicio y obtené descuentos en tu plan mensual
+              Mejorá tu servicio y obtené descuentos significativos en tu plan mensual
             </p>
           </div>
           <PointsSystem userType="residence" />
+
+          {/* Badges Detail */}
+          <div className="mt-12">
+            <h3 className="text-2xl font-bold text-center mb-8">Niveles de Certificación</h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {badges.map((badge, index) => {
+                const Icon = badge.icon;
+                return (
+                  <Card key={index} className="hover:shadow-lg transition-shadow">
+                    <CardHeader>
+                      <div className="flex items-center gap-3 mb-2">
+                        <div className={`h-12 w-12 rounded-xl ${badge.color} flex items-center justify-center`}>
+                          <Icon className="h-6 w-6 text-white" />
+                        </div>
+                        <div>
+                          <CardTitle className="text-lg">{badge.level}</CardTitle>
+                          <Badge variant="secondary" className="text-xs mt-1">{badge.requirements}</Badge>
+                        </div>
+                      </div>
+                      <CardDescription className="text-sm">{badge.description}</CardDescription>
+                    </CardHeader>
+                    <CardContent>
+                      <p className="text-sm font-semibold mb-2">Beneficios:</p>
+                      <ul className="space-y-1">
+                        {badge.benefits.map((benefit, idx) => (
+                          <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
+                            <span className="text-primary">✓</span>
+                            <span>{benefit}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
         </div>
       </section>
 
-      {/* Ranking System Explanation */}
+      {/* Evaluation System - Enhanced Warning Management */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
@@ -264,29 +387,82 @@ const ResidencePMS = () => {
                   <div className="bg-accent/10 border-l-4 border-accent p-4 rounded">
                     <p className="font-semibold text-accent-foreground mb-2">Para tu Residencia:</p>
                     <ul className="space-y-1 text-sm text-muted-foreground">
-                      <li>✓ Atraé estudiantes responsables</li>
-                      <li>✓ Reducí conflictos de convivencia</li>
-                      <li>✓ Mejorá tu reputación y descuentos</li>
+                      <li>✓ Atraé estudiantes responsables y verificados</li>
+                      <li>✓ Reducí conflictos de convivencia hasta 60%</li>
+                      <li>✓ Mejorá tu reputación y obtené descuentos significativos</li>
+                      <li>✓ Información transparente antes de aceptar reservas</li>
                     </ul>
                   </div>
                   <div className="bg-secondary/10 border-l-4 border-secondary p-4 rounded">
                     <p className="font-semibold mb-2">Para los Estudiantes:</p>
                     <ul className="space-y-1 text-sm text-muted-foreground">
-                      <li>✓ Mayor transparencia y confianza</li>
-                      <li>✓ Incentivos para buen comportamiento</li>
+                      <li>✓ Mayor transparencia y confianza en el sistema</li>
+                      <li>✓ Incentivos para mantener buen comportamiento</li>
                       <li>✓ Mejores oportunidades de alojamiento</li>
+                      <li>✓ Reconocimiento por buena convivencia</li>
                     </ul>
                   </div>
                 </div>
               </div>
 
+              {/* Enhanced Warning Management Section */}
               <div className="border-t pt-6">
-                <h3 className="font-bold text-lg mb-3">Gestión de Advertencias</h3>
-                <p className="text-muted-foreground">
-                  Los llamados de atención o expulsiones que registres influyen en el puntaje del estudiante. 
-                  Solo aparece la advertencia en su perfil, no el detalle completo, manteniendo su privacidad 
-                  mientras asegurás transparencia en la comunidad.
-                </p>
+                <div className="flex items-center gap-3 mb-4">
+                  <div className="h-12 w-12 rounded-xl bg-orange-500/10 flex items-center justify-center">
+                    <AlertTriangle className="h-6 w-6 text-orange-500" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg">Gestión de Advertencias</h3>
+                    <Badge variant="outline" className="text-xs">HERRAMIENTA DESTACADA</Badge>
+                  </div>
+                </div>
+                <div className="bg-orange-500/5 border-l-4 border-orange-500 p-4 rounded">
+                  <p className="text-muted-foreground mb-4">
+                    Sistema profesional para documentar y gestionar comportamientos problemáticos de manera transparente y justa.
+                  </p>
+                  <div className="space-y-3">
+                    <div className="flex items-start gap-2">
+                      <Shield className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-sm">Registro Privado Completo</p>
+                        <p className="text-xs text-muted-foreground">
+                          Guardá el detalle completo de cada incidente con fecha, descripción y evidencia. 
+                          Solo visible para vos y administradores.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <AlertTriangle className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-sm">Impacto en Perfil Público</p>
+                        <p className="text-xs text-muted-foreground">
+                          Solo aparece la advertencia en el perfil del estudiante, no el detalle específico. 
+                          Mantiene privacidad mientras asegura transparencia.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <TrendingUp className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-sm">Sistema de Escalamiento</p>
+                        <p className="text-xs text-muted-foreground">
+                          Advertencia verbal → Advertencia escrita → Advertencia grave → Expulsión. 
+                          Cada nivel afecta proporcionalmente el puntaje del estudiante.
+                        </p>
+                      </div>
+                    </div>
+                    <div className="flex items-start gap-2">
+                      <FileText className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
+                      <div>
+                        <p className="font-semibold text-sm">Protección Legal</p>
+                        <p className="text-xs text-muted-foreground">
+                          Documentación profesional que puede servir como respaldo legal en casos graves. 
+                          Historial completo y cronológico.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -332,7 +508,7 @@ const ResidencePMS = () => {
             ¿Listo para profesionalizar tu residencia?
           </h2>
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Comenzá gratis con una demo de 30 días. Sin compromiso.
+            Comenzá gratis con una demo de 30 días. Sin compromiso. Sin tarjeta de crédito requerida.
           </p>
           <Button size="lg" variant="outline" className="bg-background text-primary hover:bg-background/90 border-0">
             Solicitar Demo Ahora

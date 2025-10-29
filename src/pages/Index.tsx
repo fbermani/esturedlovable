@@ -268,7 +268,7 @@ const Index = () => {
             alt="Residencia estudiantil moderna"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/98 via-background/95 to-background/92 md:from-background/96 md:via-background/92 md:to-background/88" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/99 via-background/97 to-background/95" />
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
