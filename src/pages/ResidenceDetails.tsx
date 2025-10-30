@@ -27,6 +27,9 @@ interface RoomDetails {
     name: string;
     avatar: string;
     rating: number;
+    badges?: string[];
+    score?: number;
+    hasWarning?: boolean;
   }[];
 }
 
@@ -77,11 +80,15 @@ export default function ResidenceDetails() {
             name: "María G.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
             rating: 4.9,
+            badges: ["⭐", "🤝"],
+            score: 850,
           },
           {
             name: "Lucas R.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
             rating: 4.7,
+            badges: ["🤝", "💰"],
+            score: 780,
           },
         ],
       },
@@ -95,16 +102,23 @@ export default function ResidenceDetails() {
             name: "Ana P.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
             rating: 4.8,
+            badges: ["⭐"],
+            score: 820,
           },
           {
             name: "Diego F.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diego",
             rating: 4.6,
+            badges: ["🤝"],
+            score: 740,
+            hasWarning: true,
           },
           {
             name: "Sofia M.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
             rating: 5.0,
+            badges: ["⭐", "💰", "🤝"],
+            score: 920,
           },
         ],
       },
@@ -270,9 +284,10 @@ export default function ResidenceDetails() {
                             </h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                               {room.occupants.map((occupant, oIdx) => (
-                                <div
+                                 <div
                                   key={oIdx}
-                                  className="flex items-center gap-3 p-3 rounded-lg bg-background border"
+                                  className="flex items-center gap-3 p-3 rounded-lg bg-background border cursor-pointer hover:border-primary transition-colors"
+                                  onClick={() => window.location.href = `/estudiante/${oIdx + 1}`}
                                 >
                                   <Avatar className="h-12 w-12">
                                     <AvatarImage
@@ -283,17 +298,43 @@ export default function ResidenceDetails() {
                                       {occupant.name[0]}
                                     </AvatarFallback>
                                   </Avatar>
-                                  <div>
-                                    <p className="font-semibold">
-                                      {occupant.name}
-                                    </p>
-                                    <div className="flex items-center gap-1">
-                                      <Star className="h-3 w-3 fill-accent text-accent" />
-                                      <span className="text-sm font-semibold">
-                                        {occupant.rating}
-                                      </span>
+                                  <div className="flex-1">
+                                    <div className="flex items-center gap-2 mb-1 flex-wrap">
+                                      <p className="font-semibold">
+                                        {occupant.name}
+                                      </p>
+                                      {occupant.badges && occupant.badges.length > 0 && (
+                                        <div className="flex gap-1">
+                                          {occupant.badges.map((badge, bIdx) => (
+                                            <span key={bIdx} className="text-sm">{badge}</span>
+                                          ))}
+                                        </div>
+                                      )}
+                                      {occupant.hasWarning && (
+                                        <Badge variant="destructive" className="text-xs px-1 py-0">⚠️</Badge>
+                                      )}
+                                    </div>
+                                    <div className="flex items-center gap-2">
+                                      <div className="flex items-center gap-1">
+                                        <Star className="h-3 w-3 fill-accent text-accent" />
+                                        <span className="text-sm font-semibold">
+                                          {occupant.rating}
+                                        </span>
+                                      </div>
+                                      {occupant.score && (
+                                        <span className="text-xs text-primary font-semibold">
+                                          {occupant.score} pts
+                                        </span>
+                                      )}
                                     </div>
                                   </div>
+                                  <Button
+                                    variant="ghost"
+                                    size="sm"
+                                    className="text-xs"
+                                  >
+                                    Ver perfil →
+                                  </Button>
                                 </div>
                               ))}
                             </div>

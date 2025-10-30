@@ -50,19 +50,25 @@ const Index = () => {
           name: "María G.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
           rating: 4.9,
-          description: "Estudiante de medicina, organizada y tranquila. Me gusta estudiar por las tardes y cocinar los fines de semana."
+          description: "Estudiante de medicina, organizada y tranquila. Me gusta estudiar por las tardes y cocinar los fines de semana.",
+          badges: ["⭐", "🤝"],
+          score: 850
         },
         {
           name: "Lucas R.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
           rating: 4.7,
-          description: "Ingeniería, fan del deporte y música. Respetuoso con los horarios de estudio y descanso."
+          description: "Ingeniería, fan del deporte y música. Respetuoso con los horarios de estudio y descanso.",
+          badges: ["🤝", "💰"],
+          score: 780
         },
         {
           name: "Ana P.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
           rating: 4.8,
-          description: "Estudiante de diseño, creativa y sociable. Me encanta compartir experiencias y mantener todo ordenado."
+          description: "Estudiante de diseño, creativa y sociable. Me encanta compartir experiencias y mantener todo ordenado.",
+          badges: ["⭐"],
+          score: 820
         }
       ]
     },
@@ -84,19 +90,26 @@ const Index = () => {
           name: "Sofia M.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
           rating: 5.0,
-          description: "Derecho, disciplinada y amigable. Valoro la limpieza y el respeto mutuo."
+          description: "Derecho, disciplinada y amigable. Valoro la limpieza y el respeto mutuo.",
+          badges: ["⭐", "💰", "🤝"],
+          score: 920
         },
         {
           name: "Diego F.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diego",
           rating: 4.6,
-          description: "Arquitectura, ordenado y colaborativo. Me gusta la convivencia armoniosa."
+          description: "Arquitectura, ordenado y colaborativo. Me gusta la convivencia armoniosa.",
+          badges: ["🤝"],
+          score: 740,
+          hasWarning: true
         },
         {
           name: "Julia S.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Julia",
           rating: 4.9,
-          description: "Psicología, empática y organizada. Busco compañeros responsables y respetuosos."
+          description: "Psicología, empática y organizada. Busco compañeros responsables y respetuosos.",
+          badges: ["⭐", "🤝"],
+          score: 870
         }
       ]
     },
@@ -118,19 +131,25 @@ const Index = () => {
           name: "Martín L.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
           rating: 4.8,
-          description: "Economía, responsable y tranquilo. Valoro el orden y la comunicación clara."
+          description: "Economía, responsable y tranquilo. Valoro el orden y la comunicación clara.",
+          badges: ["💰", "🤝"],
+          score: 810
         },
         {
           name: "Camila T.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Camila",
           rating: 4.4,
-          description: "Comunicación social, sociable y respetuosa. Me adapto fácilmente a diferentes grupos."
+          description: "Comunicación social, sociable y respetuosa. Me adapto fácilmente a diferentes grupos.",
+          badges: ["🤝"],
+          score: 680
         },
         {
           name: "Pablo N.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pablo",
           rating: 4.6,
-          description: "Informática, colaborativo y ordenado. Busco un ambiente de estudio tranquilo."
+          description: "Informática, colaborativo y ordenado. Busco un ambiente de estudio tranquilo.",
+          badges: ["⭐", "💰"],
+          score: 750
         }
       ]
     },
@@ -152,19 +171,25 @@ const Index = () => {
           name: "Valentina R.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Valentina",
           rating: 5.0,
-          description: "Medicina veterinaria, súper organizada y respetuosa. Amo los animales y la naturaleza."
+          description: "Medicina veterinaria, súper organizada y respetuosa. Amo los animales y la naturaleza.",
+          badges: ["⭐", "💰", "🤝"],
+          score: 950
         },
         {
           name: "Tomás B.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tomas",
           rating: 4.8,
-          description: "Administración, responsable y sociable. Me gusta mantener todo en orden."
+          description: "Administración, responsable y sociable. Me gusta mantener todo en orden.",
+          badges: ["💰", "🤝"],
+          score: 830
         },
         {
           name: "Carolina V.",
           avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carolina",
           rating: 4.9,
-          description: "Filosofía y letras, tranquila y considerada. Valoro el respeto y la buena convivencia."
+          description: "Filosofía y letras, tranquila y considerada. Valoro el respeto y la buena convivencia.",
+          badges: ["⭐", "🤝"],
+          score: 880
         }
       ]
     },

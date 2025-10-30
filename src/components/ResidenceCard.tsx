@@ -12,6 +12,9 @@ interface Roommate {
   avatar: string;
   rating: number;
   description: string;
+  badges?: string[];
+  score?: number;
+  hasWarning?: boolean;
 }
 
 interface ResidenceCardProps {
@@ -116,19 +119,38 @@ export const ResidenceCard = ({
           </CollapsibleTrigger>
           <CollapsibleContent className="mt-3 space-y-3">
             {roommates.map((roommate, idx) => (
-              <div key={idx} className="flex items-start gap-3 p-3 rounded-lg bg-muted/30">
+              <div 
+                key={idx} 
+                className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 cursor-pointer transition-colors"
+                onClick={() => window.location.href = `/estudiante/${idx + 1}`}
+              >
                 <Avatar className="h-10 w-10">
                   <AvatarImage src={roommate.avatar} alt={roommate.name} />
                   <AvatarFallback>{roommate.name[0]}</AvatarFallback>
                 </Avatar>
                 <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1">
+                  <div className="flex items-center gap-2 mb-1 flex-wrap">
                     <span className="font-semibold text-sm">{roommate.name}</span>
                     <div className="flex items-center gap-1">
                       <Star className="h-3 w-3 fill-accent text-accent" />
                       <span className="text-xs font-semibold">{roommate.rating}</span>
                     </div>
+                    {roommate.badges && roommate.badges.length > 0 && (
+                      <div className="flex gap-1">
+                        {roommate.badges.slice(0, 2).map((badge, bIdx) => (
+                          <span key={bIdx} className="text-xs">{badge}</span>
+                        ))}
+                      </div>
+                    )}
+                    {roommate.hasWarning && (
+                      <Badge variant="destructive" className="text-xs px-1 py-0">⚠️</Badge>
+                    )}
                   </div>
+                  {roommate.score && (
+                    <div className="text-xs text-primary font-semibold mb-1">
+                      {roommate.score} pts
+                    </div>
+                  )}
                   <p className="text-xs text-muted-foreground line-clamp-2">{roommate.description}</p>
                 </div>
               </div>
