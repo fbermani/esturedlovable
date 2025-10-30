@@ -9,7 +9,7 @@ import { LoginDialog } from "@/components/LoginDialog";
 import { ResidenceContactForm } from "@/components/ResidenceContactForm";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
-import heroImage from "@/assets/hero-residence.jpg";
+import heroImage from "@/assets/hero-residence-optimized.jpg";
 import {
   Sheet,
   SheetContent,
@@ -304,15 +304,15 @@ const Index = () => {
             alt="Residencia estudiantil moderna"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/98 via-background/95 to-background/90" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent leading-tight drop-shadow-lg">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
               Tu hogar universitario<br />empieza con confianza
             </h2>
-            <p className="text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto mb-8 drop-shadow-md font-medium">
+            <p className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-8 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               Viví, estudiá y crecé en una comunidad segura, conectada y transparente
             </p>
           </div>

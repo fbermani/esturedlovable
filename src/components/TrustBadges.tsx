@@ -24,13 +24,13 @@ export const TrustBadges = () => {
       {badges.map((badge, index) => {
         const Icon = badge.icon;
         return (
-          <div key={index} className="flex flex-col items-center text-center gap-2">
-            <div className="h-12 w-12 rounded-full bg-primary/10 flex items-center justify-center">
+          <div key={index} className="flex flex-col items-center text-center gap-2 bg-black/40 backdrop-blur-sm p-4 rounded-lg border border-white/10">
+            <div className="h-12 w-12 rounded-full bg-primary/20 flex items-center justify-center">
               <Icon className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <p className="font-semibold text-sm md:text-base">{badge.title}</p>
-              <p className="text-xs md:text-sm text-muted-foreground">{badge.description}</p>
+              <p className="font-semibold text-sm md:text-base text-white drop-shadow-lg">{badge.title}</p>
+              <p className="text-xs md:text-sm text-white/80 drop-shadow-md">{badge.description}</p>
             </div>
           </div>
         );
