@@ -186,13 +186,31 @@ const Index = () => {
               >
                 Buscar
               </button>
-              <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">
+              <button 
+                onClick={() => scrollToSection('profile-selector')}
+                className="text-sm font-medium hover:text-primary transition-colors"
+              >
+                ¿Quién sos?
+              </button>
+              <a 
+                href="/estudiantes" 
+                className="text-sm font-medium hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Para Estudiantes
               </a>
-              <a href="/padres" className="text-sm font-medium hover:text-primary transition-colors">
+              <a 
+                href="/padres" 
+                className="text-sm font-medium hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Para Padres
               </a>
-              <a href="/residencias-pms" className="text-sm font-medium hover:text-primary transition-colors">
+              <a 
+                href="/residencias-pms" 
+                className="text-sm font-medium hover:text-primary transition-colors"
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+              >
                 Para Residencias
               </a>
             </nav>
@@ -224,13 +242,31 @@ const Index = () => {
                   >
                     Buscar
                   </button>
-                  <a href="/estudiantes" className="text-base font-medium hover:text-primary transition-colors py-2">
+                  <button 
+                    onClick={() => scrollToSection('profile-selector')}
+                    className="text-left text-base font-medium hover:text-primary transition-colors py-2"
+                  >
+                    ¿Quién sos?
+                  </button>
+                  <a 
+                    href="/estudiantes" 
+                    className="text-base font-medium hover:text-primary transition-colors py-2"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  >
                     Para Estudiantes
                   </a>
-                  <a href="/padres" className="text-base font-medium hover:text-primary transition-colors py-2">
+                  <a 
+                    href="/padres" 
+                    className="text-base font-medium hover:text-primary transition-colors py-2"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  >
                     Para Padres
                   </a>
-                  <a href="/residencias-pms" className="text-base font-medium hover:text-primary transition-colors py-2">
+                  <a 
+                    href="/residencias-pms" 
+                    className="text-base font-medium hover:text-primary transition-colors py-2"
+                    onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                  >
                     Para Residencias
                   </a>
                   <Button 
@@ -268,15 +304,15 @@ const Index = () => {
             alt="Residencia estudiantil moderna"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-br from-background/99 via-background/97 to-background/95" />
+          <div className="absolute inset-0 bg-gradient-to-br from-background/98 via-background/95 to-background/90" />
         </div>
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent leading-tight">
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary via-secondary to-primary bg-clip-text text-transparent leading-tight drop-shadow-lg">
               Tu hogar universitario<br />empieza con confianza
             </h2>
-            <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
+            <p className="text-lg md:text-xl text-foreground/90 max-w-2xl mx-auto mb-8 drop-shadow-md font-medium">
               Viví, estudiá y crecé en una comunidad segura, conectada y transparente
             </p>
           </div>
@@ -292,7 +328,9 @@ const Index = () => {
       </section>
 
       {/* Profile Selector */}
-      <ProfileSelector />
+      <div id="profile-selector" className="scroll-mt-16">
+        <ProfileSelector />
+      </div>
 
       {/* Featured Residences */}
       <section id="featured-residences" className="py-16 md:py-24 bg-background scroll-mt-16">

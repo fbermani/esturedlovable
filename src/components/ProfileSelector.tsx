@@ -1,6 +1,7 @@
-import { GraduationCap, Users, Building } from "lucide-react";
+import { GraduationCap, Users, Building, ChevronDown } from "lucide-react";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 
 interface ProfileOption {
   icon: typeof GraduationCap;
@@ -13,6 +14,7 @@ interface ProfileOption {
 export const ProfileSelector = () => {
   const navigate = useNavigate();
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   const profiles: ProfileOption[] = [
     {
@@ -67,6 +69,7 @@ export const ProfileSelector = () => {
           {profiles.map((profile, index) => {
             const Icon = profile.icon;
             const isHovered = hoveredIndex === index;
+            const isExpanded = expandedIndex === index;
 
             return (
               <div
@@ -74,7 +77,6 @@ export const ProfileSelector = () => {
                 className="relative group cursor-pointer"
                 onMouseEnter={() => setHoveredIndex(index)}
                 onMouseLeave={() => setHoveredIndex(null)}
-                onClick={() => navigate(profile.route)}
               >
                 <div className="bg-card rounded-2xl border-2 border-border p-8 transition-all duration-300 hover:border-primary hover:shadow-lg h-full flex flex-col items-center text-center">
                   <div className="h-20 w-20 rounded-full bg-primary/10 flex items-center justify-center mb-6 transition-transform duration-300 group-hover:scale-110">
@@ -84,10 +86,10 @@ export const ProfileSelector = () => {
                   <h3 className="text-2xl font-bold mb-2">{profile.title}</h3>
                   <p className="text-muted-foreground mb-4">{profile.subtitle}</p>
 
-                  {/* Benefits overlay */}
+                  {/* Benefits overlay - desktop hover, mobile expand */}
                   <div
                     className={`transition-all duration-300 overflow-hidden ${
-                      isHovered ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
+                      isHovered || isExpanded ? "max-h-96 opacity-100" : "max-h-0 opacity-0"
                     }`}
                   >
                     <div className="pt-4 border-t border-border">
@@ -102,6 +104,33 @@ export const ProfileSelector = () => {
                       </ul>
                     </div>
                   </div>
+
+                  {/* Mobile: Toggle details button */}
+                  <Button
+                    variant="ghost"
+                    size="sm"
+                    className="md:hidden mt-4 gap-2"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      setExpandedIndex(isExpanded ? null : index);
+                    }}
+                  >
+                    {isExpanded ? "Ocultar" : "Ver detalles"}
+                    <ChevronDown className={`h-4 w-4 transition-transform ${isExpanded ? "rotate-180" : ""}`} />
+                  </Button>
+
+                  {/* Ver más button - navigates to profile page */}
+                  <Button
+                    variant="default"
+                    size="sm"
+                    className="mt-4 w-full"
+                    onClick={() => {
+                      navigate(profile.route);
+                      window.scrollTo({ top: 0, behavior: 'smooth' });
+                    }}
+                  >
+                    Ver más
+                  </Button>
                 </div>
               </div>
             );
