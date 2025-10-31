@@ -10,6 +10,9 @@ import { ResidenceContactForm } from "@/components/ResidenceContactForm";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
 import heroImage from "@/assets/hero-shared-room.jpg";
+import hostelRoom1 from "@/assets/hostel-room-1.jpg";
+import hostelRoom3 from "@/assets/hostel-room-3.jpg";
+import hostelCommon from "@/assets/hostel-common-2.jpg";
 import {
   Sheet,
   SheetContent,
@@ -17,6 +20,14 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 
 const Index = () => {
   const [loginOpen, setLoginOpen] = useState(false);
@@ -320,15 +331,53 @@ const Index = () => {
       <LoginDialog open={loginOpen} onOpenChange={setLoginOpen} />
       <ResidenceContactForm open={contactFormOpen} onOpenChange={setContactFormOpen} />
 
-      {/* Hero Section */}
+      {/* Hero Section with Carousel */}
       <section className="relative overflow-hidden">
-        {/* Hero image as background */}
+        {/* Hero carousel as background */}
         <div className="absolute inset-0">
-          <img
-            src={heroImage}
-            alt="Residencia estudiantil moderna"
-            className="w-full h-full object-cover"
-          />
+          <Carousel
+            opts={{
+              align: "start",
+              loop: true,
+            }}
+            plugins={[
+              Autoplay({
+                delay: 4000,
+              }),
+            ]}
+            className="w-full h-full"
+          >
+            <CarouselContent className="h-full">
+              <CarouselItem className="h-full">
+                <img
+                  src={heroImage}
+                  alt="Habitación compartida en residencia estudiantil"
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+              <CarouselItem className="h-full">
+                <img
+                  src={hostelRoom1}
+                  alt="Habitación doble moderna"
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+              <CarouselItem className="h-full">
+                <img
+                  src={hostelRoom3}
+                  alt="Habitación compartida con escritorio"
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+              <CarouselItem className="h-full">
+                <img
+                  src={hostelCommon}
+                  alt="Áreas comunes de residencia estudiantil"
+                  className="w-full h-full object-cover"
+                />
+              </CarouselItem>
+            </CarouselContent>
+          </Carousel>
           <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/70" />
         </div>
         
@@ -365,7 +414,11 @@ const Index = () => {
               <h2 className="text-3xl md:text-4xl font-bold mb-2">Residencias destacadas</h2>
               <p className="text-muted-foreground">Las mejores opciones verificadas para vos</p>
             </div>
-            <Button variant="link" className="hidden md:flex">
+            <Button 
+              variant="link" 
+              className="hidden md:flex"
+              onClick={() => window.location.href = '/residencias'}
+            >
               Ver todas →
             </Button>
           </div>
@@ -377,7 +430,12 @@ const Index = () => {
           </div>
           
           <div className="flex justify-center mt-8 md:hidden">
-            <Button variant="outline">Ver todas las residencias</Button>
+            <Button 
+              variant="outline"
+              onClick={() => window.location.href = '/residencias'}
+            >
+              Ver todas las residencias
+            </Button>
           </div>
         </div>
       </section>

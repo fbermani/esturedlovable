@@ -146,6 +146,9 @@ export default function ResidenceDetails() {
     ],
   };
 
+  // Filtrar solo las habitaciones con al menos una plaza disponible
+  const availableRooms = residence.rooms.filter(room => room.available > 0);
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
@@ -272,7 +275,7 @@ export default function ResidenceDetails() {
                   Disponibilidad de habitaciones
                 </h2>
                 <div className="space-y-4">
-                  {residence.rooms.map((room, idx) => (
+                  {availableRooms.map((room, idx) => (
                     <div
                       key={idx}
                       className={`border-2 rounded-xl p-5 transition-all cursor-pointer ${
@@ -456,14 +459,19 @@ export default function ResidenceDetails() {
 
                 <div>
                   <h3 className="font-bold mb-3">Contacto</h3>
-                  <div className="space-y-2">
-                    <Button className="w-full gap-2" size="lg">
-                      <Phone className="h-4 w-4" />
-                      Llamar ahora
-                    </Button>
+                  <div className="space-y-3">
+                    <div className="bg-muted/50 rounded-lg p-3 border border-border">
+                      <div className="flex items-center gap-2 text-sm text-muted-foreground mb-1">
+                        <Shield className="h-3 w-3" />
+                        <span className="font-medium">Protección de datos</span>
+                      </div>
+                      <p className="text-xs text-muted-foreground">
+                        El teléfono se habilita al reservar. Enviá consultas por chat interno sin compartir datos personales.
+                      </p>
+                    </div>
                     <Button variant="outline" className="w-full gap-2" size="lg">
                       <Mail className="h-4 w-4" />
-                      Enviar consulta
+                      Enviar consulta por chat
                     </Button>
                   </div>
                 </div>
