@@ -9,7 +9,7 @@ import { LoginDialog } from "@/components/LoginDialog";
 import { ResidenceContactForm } from "@/components/ResidenceContactForm";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
-import heroImage from "@/assets/hero-residence-optimized.jpg";
+import heroImage from "@/assets/hero-shared-room.jpg";
 import {
   Sheet,
   SheetContent,
@@ -33,9 +33,9 @@ const Index = () => {
 
   const featuredResidences = [
     {
-      image: "/src/assets/hostel-room-1.jpg",
-      title: "Residencia San Martín",
-      location: "Centro, Buenos Aires",
+      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      title: "Residencia ***",
+      location: "Centro - Av. Corrientes y San Martín",
       priceMin: 38000,
       priceMax: 55000,
       rating: 4.8,
@@ -73,9 +73,9 @@ const Index = () => {
       ]
     },
     {
-      image: "/src/assets/hostel-common-2.jpg",
-      title: "Casa Universitaria Norte",
-      location: "Recoleta, Buenos Aires",
+      image: new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      title: "Casa Universitaria ***",
+      location: "Recoleta - Av. Santa Fe y Callao",
       priceMin: 45000,
       priceMax: 62000,
       rating: 4.9,
@@ -114,9 +114,9 @@ const Index = () => {
       ]
     },
     {
-      image: "/src/assets/hostel-room-3.jpg",
-      title: "Residencia del Parque",
-      location: "Palermo, Buenos Aires",
+      image: new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      title: "Residencia del ***",
+      location: "Palermo - Av. Santa Fe y Scalabrini Ortiz",
       priceMin: 40000,
       priceMax: 58000,
       rating: 4.7,
@@ -154,9 +154,9 @@ const Index = () => {
       ]
     },
     {
-      image: "/src/assets/hostel-room-1.jpg",
-      title: "Residencia Premium Palermo",
-      location: "Palermo, Buenos Aires",
+      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      title: "Residencia Premium ***",
+      location: "Palermo - Av. Córdoba y Juan B. Justo",
       priceMin: 48000,
       priceMax: 68000,
       rating: 5.0,

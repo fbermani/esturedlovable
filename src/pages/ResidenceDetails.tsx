@@ -15,6 +15,16 @@ import {
   Mail,
   Home,
   UserCheck,
+  BookOpen,
+  Utensils,
+  Shirt,
+  Wind,
+  Flame,
+  Sparkles,
+  Sofa,
+  ChefHat,
+  Trees,
+  ChevronDown,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -23,6 +33,7 @@ interface RoomDetails {
   price: number;
   available: number;
   total: number;
+  capacity: number;
   occupants: {
     name: string;
     avatar: string;
@@ -33,17 +44,25 @@ interface RoomDetails {
   }[];
 }
 
+const iconMap: Record<string, any> = {
+  Wifi, BookOpen, Utensils, Shirt, Wind, Flame, Sparkles, Shield,
+  Sofa, ChefHat, Trees, Home
+};
+
 export default function ResidenceDetails() {
   const { id } = useParams();
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
+  const [showRoommates, setShowRoommates] = useState<string | null>(null);
+  const [showAllResidents, setShowAllResidents] = useState(false);
 
   // Mock data - in a real app this would come from an API based on the ID
   const residence = {
     id,
-    title: "Residencia San Martín",
-    mainImage: "/src/assets/hostel-room-1.jpg",
-    location: "Centro, Buenos Aires",
+    title: "Residencia ***",
+    mainImage: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+    location: "Centro - Av. Corrientes y San Martín",
     fullAddress: "Av. San Martín 1234, Ciudad Autónoma de Buenos Aires",
+    fullAddressHidden: "Dirección completa disponible al reservar",
     rating: 4.8,
     reviews: 127,
     verified: true,
@@ -53,21 +72,21 @@ export default function ResidenceDetails() {
     coordinator: "Residencia atendida por coordinador in-site",
     currentResidents: 24,
     services: [
-      "WiFi Alta Velocidad",
-      "Zona de Estudio 24hs",
-      "Cocina Equipada",
-      "Lavandería",
-      "Aire Acondicionado",
-      "Calefacción",
-      "Seguridad 24hs",
-      "Limpieza de Áreas Comunes",
+      { name: "WiFi Alta Velocidad", icon: "Wifi" },
+      { name: "Zona de Estudio 24hs", icon: "BookOpen" },
+      { name: "Cocina Equipada", icon: "Utensils" },
+      { name: "Lavandería", icon: "Shirt" },
+      { name: "Aire Acondicionado", icon: "Wind" },
+      { name: "Calefacción", icon: "Flame" },
+      { name: "Seguridad 24hs", icon: "Shield" },
+      { name: "Limpieza de Áreas Comunes", icon: "Sparkles" },
     ],
     commonAreas: [
-      "Living Comunitario",
-      "Cocina Integrada",
-      "Sala de Estudio",
-      "Terraza con Parrilla",
-      "Patio Interno",
+      { name: "Living Comunitario", icon: "Sofa" },
+      { name: "Cocina Integrada", icon: "ChefHat" },
+      { name: "Sala de Estudio", icon: "BookOpen" },
+      { name: "Terraza con Parrilla", icon: "Flame" },
+      { name: "Patio Interno", icon: "Trees" },
     ],
     rooms: [
       {
@@ -75,6 +94,7 @@ export default function ResidenceDetails() {
         price: 45000,
         available: 2,
         total: 6,
+        capacity: 2,
         occupants: [
           {
             name: "María G.",
@@ -97,6 +117,7 @@ export default function ResidenceDetails() {
         price: 38000,
         available: 1,
         total: 4,
+        capacity: 3,
         occupants: [
           {
             name: "Ana P.",
@@ -207,15 +228,18 @@ export default function ResidenceDetails() {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Servicios</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {residence.services.map((service, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-sm p-3 rounded-lg bg-muted/30"
-                    >
-                      <Wifi className="h-4 w-4 text-primary" />
-                      <span>{service}</span>
-                    </div>
-                  ))}
+                  {residence.services.map((service: any, idx) => {
+                    const IconComponent = iconMap[service.icon] || Wifi;
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-2 text-sm p-3 rounded-lg bg-muted/30"
+                      >
+                        <IconComponent className="h-4 w-4 text-primary" />
+                        <span>{service.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
@@ -225,15 +249,18 @@ export default function ResidenceDetails() {
               <CardContent className="p-6">
                 <h2 className="text-2xl font-bold mb-4">Áreas comunes</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                  {residence.commonAreas.map((area, idx) => (
-                    <div
-                      key={idx}
-                      className="flex items-center gap-2 text-sm p-3 rounded-lg bg-muted/30"
-                    >
-                      <Home className="h-4 w-4 text-primary" />
-                      <span>{area}</span>
-                    </div>
-                  ))}
+                  {residence.commonAreas.map((area: any, idx) => {
+                    const IconComponent = iconMap[area.icon] || Home;
+                    return (
+                      <div
+                        key={idx}
+                        className="flex items-center gap-2 text-sm p-3 rounded-lg bg-muted/30"
+                      >
+                        <IconComponent className="h-4 w-4 text-primary" />
+                        <span>{area.name}</span>
+                      </div>
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>
@@ -277,14 +304,22 @@ export default function ResidenceDetails() {
                       {selectedRoom === room.type && (
                         <>
                           <Separator className="my-4" />
-                          <div>
-                            <h4 className="font-semibold mb-3 flex items-center gap-2">
+                          <Button
+                            variant="outline"
+                            className="w-full justify-between mb-4"
+                            onClick={() => setShowRoommates(showRoommates === room.type ? null : room.type)}
+                          >
+                            <span className="flex items-center gap-2">
                               <Users className="h-4 w-4" />
-                              Conocé a los integrantes
-                            </h4>
+                              Conocé a tus compañeros
+                            </span>
+                            <ChevronDown className={`h-4 w-4 transition-transform ${showRoommates === room.type ? 'rotate-180' : ''}`} />
+                          </Button>
+
+                          {showRoommates === room.type && (
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                               {room.occupants.map((occupant, oIdx) => (
-                                 <div
+                                <div
                                   key={oIdx}
                                   className="flex items-center gap-3 p-3 rounded-lg bg-background border cursor-pointer hover:border-primary transition-colors"
                                   onClick={() => window.location.href = `/estudiante/${oIdx + 1}`}
@@ -337,8 +372,16 @@ export default function ResidenceDetails() {
                                   </Button>
                                 </div>
                               ))}
+                              {room.occupants.length < room.capacity && (
+                                <div className="flex items-center justify-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary border-dashed">
+                                  <div className="text-center">
+                                    <p className="font-bold text-primary text-lg mb-1">¡Aquí podés estar vos!</p>
+                                    <p className="text-sm text-muted-foreground">Lugar disponible</p>
+                                  </div>
+                                </div>
+                              )}
                             </div>
-                          </div>
+                          )}
                         </>
                       )}
                     </div>
@@ -358,9 +401,12 @@ export default function ResidenceDetails() {
                     <div className="flex items-start gap-2">
                       <MapPin className="h-4 w-4 text-muted-foreground mt-0.5" />
                       <div>
-                        <p className="font-medium">Dirección</p>
+                        <p className="font-medium">Ubicación</p>
                         <p className="text-muted-foreground">
-                          {residence.fullAddress}
+                          {residence.location}
+                        </p>
+                        <p className="text-xs text-muted-foreground mt-1 italic">
+                          {residence.fullAddressHidden}
                         </p>
                       </div>
                     </div>
@@ -385,9 +431,7 @@ export default function ResidenceDetails() {
                         <Button
                           variant="link"
                           className="h-auto p-0 text-xs"
-                          onClick={() =>
-                            alert("Funcionalidad en desarrollo")
-                          }
+                          onClick={() => setShowAllResidents(true)}
                         >
                           Ver todos los perfiles →
                         </Button>
@@ -428,6 +472,77 @@ export default function ResidenceDetails() {
           </div>
         </div>
       </div>
+
+      {/* All Residents Dialog */}
+      {showAllResidents && (
+        <div className="fixed inset-0 bg-background/80 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+          <Card className="max-w-4xl w-full max-h-[80vh] overflow-y-auto">
+            <CardContent className="p-6">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-2xl font-bold">Todos los Residentes</h2>
+                <Button variant="ghost" size="sm" onClick={() => setShowAllResidents(false)}>
+                  ✕
+                </Button>
+              </div>
+              
+              <div className="space-y-6">
+                {residence.rooms.map((room, roomIdx) => (
+                  <div key={roomIdx}>
+                    <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                      <Home className="h-5 w-5 text-primary" />
+                      Habitación {room.type}
+                    </h3>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {room.occupants.map((occupant, oIdx) => (
+                        <div
+                          key={oIdx}
+                          className="flex items-center gap-3 p-3 rounded-lg bg-muted/30 border cursor-pointer hover:border-primary transition-colors"
+                          onClick={() => {
+                            setShowAllResidents(false);
+                            window.location.href = `/estudiante/${oIdx + 1}`;
+                          }}
+                        >
+                          <Avatar className="h-12 w-12">
+                            <AvatarImage src={occupant.avatar} alt={occupant.name} />
+                            <AvatarFallback>{occupant.name[0]}</AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <div className="flex items-center gap-2 mb-1 flex-wrap">
+                              <p className="font-semibold">{occupant.name}</p>
+                              {occupant.badges && occupant.badges.length > 0 && (
+                                <div className="flex gap-1">
+                                  {occupant.badges.map((badge, bIdx) => (
+                                    <span key={bIdx} className="text-sm">{badge}</span>
+                                  ))}
+                                </div>
+                              )}
+                              {occupant.hasWarning && (
+                                <Badge variant="destructive" className="text-xs px-1 py-0">⚠️</Badge>
+                              )}
+                            </div>
+                            <div className="flex items-center gap-2">
+                              <div className="flex items-center gap-1">
+                                <Star className="h-3 w-3 fill-accent text-accent" />
+                                <span className="text-sm font-semibold">{occupant.rating}</span>
+                              </div>
+                              {occupant.score && (
+                                <span className="text-xs text-primary font-semibold">
+                                  {occupant.score} pts
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                    {roomIdx < residence.rooms.length - 1 && <Separator className="mt-6" />}
+                  </div>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }

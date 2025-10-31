@@ -16,13 +16,15 @@ import {
   Home,
   Users,
   TrendingUp,
+  Shield,
 } from "lucide-react";
 
 // Datos de ejemplo de diferentes estudiantes
 const studentsData: any = {
   "1": {
     id: "1",
-    name: "María González",
+    name: "María G.",
+    fullName: "María González",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
     rating: 4.9,
     career: "Medicina",
@@ -53,10 +55,13 @@ const studentsData: any = {
       },
     ],
     parentProfile: {
-      name: "Carlos González",
+      name: "Carlos G.",
+      fullName: "Carlos González",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carlos",
-      phone: "+54 11 1234-5678",
-      email: "carlos.gonzalez@email.com",
+      phone: "***-****",
+      email: "***@***",
+      phoneHidden: true,
+      emailHidden: true,
     },
     bio: "Estudiante de medicina apasionada por la investigación. Me gusta mantener un ambiente tranquilo para estudiar pero también disfruto de las actividades sociales. Busco un lugar ordenado y con buena energía.",
     interests: ["Estudio", "Yoga", "Lectura", "Cocina saludable"],
@@ -64,7 +69,8 @@ const studentsData: any = {
   },
   "2": {
     id: "2",
-    name: "Diego Fernández",
+    name: "Diego F.",
+    fullName: "Diego Fernández",
     avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diego",
     rating: 4.6,
     career: "Arquitectura",
@@ -99,10 +105,13 @@ const studentsData: any = {
       },
     ],
     parentProfile: {
-      name: "Roberto Fernández",
+      name: "Roberto F.",
+      fullName: "Roberto Fernández",
       avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Roberto",
-      phone: "+54 11 9876-5432",
-      email: "roberto.fernandez@email.com",
+      phone: "***-****",
+      email: "***@***",
+      phoneHidden: true,
+      emailHidden: true,
     },
     bio: "Estudiante de arquitectura, apasionado por el diseño y el arte. Soy colaborativo y me gusta la convivencia armoniosa. Estoy trabajando en mejorar mis hábitos de orden.",
     interests: ["Diseño", "Música", "Deportes", "Fotografía"],
@@ -329,11 +338,17 @@ export default function StudentProfileView2() {
                   <div className="space-y-3">
                     <div className="flex items-center gap-3 text-sm">
                       <Phone className="h-4 w-4 text-muted-foreground" />
-                      <span>{student.parentProfile.phone}</span>
+                      <span className="text-muted-foreground">{student.parentProfile.phone}</span>
                     </div>
                     <div className="flex items-center gap-3 text-sm">
                       <Mail className="h-4 w-4 text-muted-foreground" />
-                      <span className="truncate">{student.parentProfile.email}</span>
+                      <span className="truncate text-muted-foreground">{student.parentProfile.email}</span>
+                    </div>
+                    <div className="bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-lg p-3">
+                      <p className="text-xs text-amber-800 dark:text-amber-200 flex items-center gap-2">
+                        <Shield className="h-3 w-3" />
+                        Los datos se habilitan al reservar
+                      </p>
                     </div>
                   </div>
 
@@ -341,11 +356,11 @@ export default function StudentProfileView2() {
 
                   <div className="space-y-2">
                     <Button className="w-full gap-2">
-                      <Phone className="h-4 w-4" />
-                      Contactar Padre
+                      <Mail className="h-4 w-4" />
+                      Enviar mensaje
                     </Button>
                     <p className="text-xs text-muted-foreground text-center">
-                      Los padres pueden contactar entre sí para compartir información sobre las residencias
+                      Contactá por chat interno sin compartir datos personales. Los padres pueden consultar sobre estudiantes y residencias.
                     </p>
                   </div>
                 </CardContent>
