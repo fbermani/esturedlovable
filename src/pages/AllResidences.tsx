@@ -15,7 +15,10 @@ export default function AllResidences() {
   // Residencias disponibles
   const availableResidences = [
     {
-      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      ],
       title: "Residencia ***",
       location: "Centro - Av. Corrientes y San Martín",
       priceMin: 38000,
@@ -26,7 +29,11 @@ export default function AllResidences() {
       availability: ["Doble", "Triple"],
       currentResidents: 24,
       residentsRating: 4.6,
-      highlightedService: "WiFi Alta Velocidad",
+      services: [
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "Seguridad 24hs", icon: "Shield" },
+      ],
       roommates: [
         {
           name: "María G.",
@@ -39,7 +46,10 @@ export default function AllResidences() {
       ]
     },
     {
-      image: new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      ],
       title: "Casa Universitaria ***",
       location: "Recoleta - Av. Santa Fe y Callao",
       priceMin: 45000,
@@ -50,7 +60,11 @@ export default function AllResidences() {
       availability: ["Individual", "Doble"],
       currentResidents: 18,
       residentsRating: 4.8,
-      highlightedService: "Gym Incluido",
+      services: [
+        { name: "Gym Incluido", icon: "Flame" },
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Limpieza", icon: "Sparkles" },
+      ],
       roommates: [
         {
           name: "Sofia M.",
@@ -63,7 +77,10 @@ export default function AllResidences() {
       ]
     },
     {
-      image: new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      ],
       title: "Residencia del ***",
       location: "Palermo - Av. Santa Fe y Scalabrini Ortiz",
       priceMin: 40000,
@@ -74,7 +91,11 @@ export default function AllResidences() {
       availability: ["Triple", "Cuádruple"],
       currentResidents: 32,
       residentsRating: 4.5,
-      highlightedService: "Zona de Estudio 24hs",
+      services: [
+        { name: "Zona de Estudio 24hs", icon: "BookOpen" },
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+      ],
       roommates: [
         {
           name: "Martín L.",
@@ -91,7 +112,10 @@ export default function AllResidences() {
   // Residencias sin disponibilidad
   const unavailableResidences = [
     {
-      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      ],
       title: "Residencia Premium ***",
       location: "Palermo - Av. Córdoba y Juan B. Justo",
       priceMin: 48000,
@@ -102,13 +126,20 @@ export default function AllResidences() {
       availability: [],
       currentResidents: 15,
       residentsRating: 4.9,
-      highlightedService: "Servicio de Limpieza",
+      services: [
+        { name: "Servicio de Limpieza", icon: "Sparkles" },
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Seguridad 24hs", icon: "Shield" },
+      ],
       roommates: [],
       soldOut: true,
       roomTypes: ["Individual", "Doble"]
     },
     {
-      image: new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      ],
       title: "Residencia Central ***",
       location: "Centro - Av. de Mayo y 9 de Julio",
       priceMin: 42000,
@@ -119,7 +150,11 @@ export default function AllResidences() {
       availability: [],
       currentResidents: 28,
       residentsRating: 4.4,
-      highlightedService: "Cocina Equipada",
+      services: [
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Lavandería", icon: "Shirt" },
+      ],
       roommates: [],
       soldOut: true,
       roomTypes: ["Triple", "Cuádruple"]
@@ -182,7 +217,7 @@ export default function AllResidences() {
                     Sin Disponibilidad
                   </Badge>
                   <img
-                    src={residence.image}
+                    src={residence.images[0]}
                     alt={residence.title}
                     className="w-full h-48 object-cover grayscale-[30%]"
                   />

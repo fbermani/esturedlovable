@@ -44,7 +44,11 @@ const Index = () => {
 
   const featuredResidences = [
     {
-      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      ],
       title: "Residencia ***",
       location: "Centro - Av. Corrientes y San Martín",
       priceMin: 38000,
@@ -55,7 +59,13 @@ const Index = () => {
       availability: ["Doble", "Triple"],
       currentResidents: 24,
       residentsRating: 4.6,
-      highlightedService: "WiFi Alta Velocidad",
+      services: [
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Zona de Estudio 24hs", icon: "BookOpen" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "Lavandería", icon: "Shirt" },
+        { name: "Aire Acondicionado", icon: "Wind" },
+      ],
       roommates: [
         {
           name: "María G.",
@@ -84,7 +94,11 @@ const Index = () => {
       ]
     },
     {
-      image: new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      ],
       title: "Casa Universitaria ***",
       location: "Recoleta - Av. Santa Fe y Callao",
       priceMin: 45000,
@@ -95,7 +109,13 @@ const Index = () => {
       availability: ["Individual", "Doble"],
       currentResidents: 18,
       residentsRating: 4.8,
-      highlightedService: "Gym Incluido",
+      services: [
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Gym Incluido", icon: "Flame" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "Seguridad 24hs", icon: "Shield" },
+        { name: "Limpieza", icon: "Sparkles" },
+      ],
       roommates: [
         {
           name: "Sofia M.",
@@ -125,7 +145,11 @@ const Index = () => {
       ]
     },
     {
-      image: new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      ],
       title: "Residencia del ***",
       location: "Palermo - Av. Santa Fe y Scalabrini Ortiz",
       priceMin: 40000,
@@ -136,7 +160,13 @@ const Index = () => {
       availability: ["Triple", "Cuádruple"],
       currentResidents: 32,
       residentsRating: 4.5,
-      highlightedService: "Zona de Estudio 24hs",
+      services: [
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Zona de Estudio 24hs", icon: "BookOpen" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "Lavandería", icon: "Shirt" },
+        { name: "Calefacción", icon: "Flame" },
+      ],
       roommates: [
         {
           name: "Martín L.",
@@ -165,7 +195,11 @@ const Index = () => {
       ]
     },
     {
-      image: new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+      images: [
+        new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
+        new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
+      ],
       title: "Residencia Premium ***",
       location: "Palermo - Av. Córdoba y Juan B. Justo",
       priceMin: 48000,
@@ -176,7 +210,13 @@ const Index = () => {
       availability: ["Individual"],
       currentResidents: 15,
       residentsRating: 4.9,
-      highlightedService: "Servicio de Limpieza",
+      services: [
+        { name: "WiFi Alta Velocidad", icon: "Wifi" },
+        { name: "Servicio de Limpieza", icon: "Sparkles" },
+        { name: "Cocina Equipada", icon: "Utensils" },
+        { name: "Aire Acondicionado", icon: "Wind" },
+        { name: "Seguridad 24hs", icon: "Shield" },
+      ],
       roommates: [
         {
           name: "Valentina R.",

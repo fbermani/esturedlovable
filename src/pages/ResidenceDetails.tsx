@@ -25,7 +25,13 @@ import {
   ChefHat,
   Trees,
   ChevronDown,
+  MessageCircle,
+  UserRound,
+  CalendarDays,
 } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
+import { BookingForm } from "@/components/BookingForm";
+import { ChatDialog } from "@/components/ChatDialog";
 import { useState } from "react";
 
 interface RoomDetails {
@@ -54,6 +60,9 @@ export default function ResidenceDetails() {
   const [selectedRoom, setSelectedRoom] = useState<string | null>(null);
   const [showRoommates, setShowRoommates] = useState<string | null>(null);
   const [showAllResidents, setShowAllResidents] = useState(false);
+  const [showBookingForm, setShowBookingForm] = useState(false);
+  const [showChatDialog, setShowChatDialog] = useState(false);
+  const [selectedRoomForBooking, setSelectedRoomForBooking] = useState<{type: string, price: number} | null>(null);
 
   // Mock data - in a real app this would come from an API based on the ID
   const residence = {
@@ -71,6 +80,8 @@ export default function ResidenceDetails() {
     proration: true,
     coordinator: "Residencia atendida por coordinador in-site",
     currentResidents: 24,
+    phoneHidden: true,
+    phoneMessage: "El teléfono se habilita al reservar",
     services: [
       { name: "WiFi Alta Velocidad", icon: "Wifi" },
       { name: "Zona de Estudio 24hs", icon: "BookOpen" },
@@ -95,6 +106,8 @@ export default function ResidenceDetails() {
         available: 2,
         total: 6,
         capacity: 2,
+        gender: "Femenina",
+        hasDeposit: true,
         occupants: [
           {
             name: "María G.",
@@ -103,6 +116,17 @@ export default function ResidenceDetails() {
             badges: ["⭐", "🤝"],
             score: 850,
           },
+        ],
+      },
+      {
+        type: "Doble",
+        price: 45000,
+        available: 1,
+        total: 3,
+        capacity: 2,
+        gender: "Masculina",
+        hasDeposit: true,
+        occupants: [
           {
             name: "Lucas R.",
             avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
@@ -118,6 +142,9 @@ export default function ResidenceDetails() {
         available: 1,
         total: 4,
         capacity: 3,
+        gender: "Femenina",
+        hasDeposit: false,
+        enrollmentFee: true,
         occupants: [
           {
             name: "Ana P.",
@@ -201,11 +228,25 @@ export default function ResidenceDetails() {
             </div>
 
             <div className="flex gap-3">
-              <Button size="lg" className="gap-2">
-                <Phone className="h-4 w-4" />
-                Contactar
+              <Button 
+                size="lg" 
+                className="gap-2"
+                onClick={() => setShowChatDialog(true)}
+              >
+                <MessageCircle className="h-4 w-4" />
+                Enviar consulta por chat
               </Button>
-              <Button size="lg" variant="outline" className="gap-2">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                className="gap-2"
+                onClick={() => {
+                  if (availableRooms.length > 0) {
+                    setSelectedRoomForBooking({ type: availableRooms[0].type, price: availableRooms[0].price });
+                    setShowBookingForm(true);
+                  }
+                }}
+              >
                 <CheckCircle className="h-4 w-4" />
                 Reservar
               </Button>
@@ -291,7 +332,12 @@ export default function ResidenceDetails() {
                     >
                       <div className="flex items-center justify-between mb-3">
                         <div>
-                          <h3 className="text-xl font-bold">{room.type}</h3>
+                          <div className="flex items-center gap-2 mb-1">
+                            <h3 className="text-xl font-bold">{room.type}</h3>
+                            <Badge variant="outline" className="text-xs">
+                              {room.gender === "Masculina" ? "♂ Masculina" : "♀ Femenina"}
+                            </Badge>
+                          </div>
                           <p className="text-sm text-muted-foreground">
                             {room.available} de {room.total} disponibles
                           </p>
@@ -301,6 +347,12 @@ export default function ResidenceDetails() {
                             ${room.price.toLocaleString()}
                           </p>
                           <p className="text-sm text-muted-foreground">/mes</p>
+                          {room.hasDeposit && (
+                            <p className="text-xs text-muted-foreground mt-1">+ Depósito</p>
+                          )}
+                          {room.enrollmentFee && (
+                            <p className="text-xs text-muted-foreground mt-1">+ Matrícula</p>
+                          )}
                         </div>
                       </div>
 
@@ -375,16 +427,32 @@ export default function ResidenceDetails() {
                                   </Button>
                                 </div>
                               ))}
-                              {room.occupants.length < room.capacity && (
-                                <div className="flex items-center justify-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary border-dashed">
+                              {Array.from({ length: room.capacity - room.occupants.length }).map((_, idx) => (
+                                <div 
+                                  key={`empty-${idx}`} 
+                                  className="flex items-center justify-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary border-dashed"
+                                >
                                   <div className="text-center">
-                                    <p className="font-bold text-primary text-lg mb-1">¡Aquí podés estar vos!</p>
+                                    <p className="font-bold text-primary text-lg mb-1">¡Acá podés estar vos!</p>
                                     <p className="text-sm text-muted-foreground">Lugar disponible</p>
                                   </div>
                                 </div>
-                              )}
+                              ))}
                             </div>
                           )}
+
+                          <Separator className="my-4" />
+                          
+                          <Button 
+                            className="w-full gap-2" 
+                            onClick={() => {
+                              setSelectedRoomForBooking({ type: room.type, price: room.price });
+                              setShowBookingForm(true);
+                            }}
+                          >
+                            <CalendarDays className="h-4 w-4" />
+                            Reservar esta habitación
+                          </Button>
                         </>
                       )}
                     </div>
@@ -469,8 +537,13 @@ export default function ResidenceDetails() {
                         El teléfono se habilita al reservar. Enviá consultas por chat interno sin compartir datos personales.
                       </p>
                     </div>
-                    <Button variant="outline" className="w-full gap-2" size="lg">
-                      <Mail className="h-4 w-4" />
+                    <Button 
+                      variant="outline" 
+                      className="w-full gap-2" 
+                      size="lg"
+                      onClick={() => setShowChatDialog(true)}
+                    >
+                      <MessageCircle className="h-4 w-4" />
                       Enviar consulta por chat
                     </Button>
                   </div>
@@ -493,13 +566,25 @@ export default function ResidenceDetails() {
                 </Button>
               </div>
               
+              <p className="text-sm text-muted-foreground mb-4">
+                Total: {residence.rooms.reduce((acc, room) => acc + room.occupants.length, 0)} residentes
+              </p>
+              
               <div className="space-y-6">
                 {residence.rooms.map((room, roomIdx) => (
                   <div key={roomIdx}>
-                    <h3 className="font-bold text-lg mb-3 flex items-center gap-2">
+                    <div className="flex items-center gap-2 mb-3">
                       <Home className="h-5 w-5 text-primary" />
-                      Habitación {room.type}
-                    </h3>
+                      <h3 className="font-bold text-lg">
+                        Habitación {room.type}
+                      </h3>
+                      <Badge variant="outline" className="text-xs">
+                        {room.gender === "Masculina" ? "♂" : "♀"}
+                      </Badge>
+                      <span className="text-sm text-muted-foreground">
+                        ({room.occupants.length}/{room.capacity})
+                      </span>
+                    </div>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {room.occupants.map((occupant, oIdx) => (
                         <div
@@ -542,6 +627,17 @@ export default function ResidenceDetails() {
                           </div>
                         </div>
                       ))}
+                      {Array.from({ length: room.capacity - room.occupants.length }).map((_, idx) => (
+                        <div 
+                          key={`empty-${idx}`}
+                          className="flex items-center justify-center gap-3 p-3 rounded-lg bg-primary/10 border border-primary border-dashed"
+                        >
+                          <div className="text-center">
+                            <UserRound className="h-8 w-8 text-primary/50 mx-auto mb-1" />
+                            <p className="font-semibold text-primary text-sm">Disponible</p>
+                          </div>
+                        </div>
+                      ))}
                     </div>
                     {roomIdx < residence.rooms.length - 1 && <Separator className="mt-6" />}
                   </div>
@@ -551,6 +647,30 @@ export default function ResidenceDetails() {
           </Card>
         </div>
       )}
+
+      {/* Booking Form Dialog */}
+      <Dialog open={showBookingForm} onOpenChange={setShowBookingForm}>
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto">
+          {selectedRoomForBooking && (
+            <BookingForm
+              residenceName={residence.title}
+              roomType={selectedRoomForBooking.type}
+              price={selectedRoomForBooking.price}
+              onClose={() => setShowBookingForm(false)}
+            />
+          )}
+        </DialogContent>
+      </Dialog>
+
+      {/* Chat Dialog */}
+      <Dialog open={showChatDialog} onOpenChange={setShowChatDialog}>
+        <DialogContent className="max-w-2xl p-0">
+          <ChatDialog
+            residenceName={residence.title}
+            onClose={() => setShowChatDialog(false)}
+          />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

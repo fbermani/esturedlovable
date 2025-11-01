@@ -1,11 +1,14 @@
-import { Star, MapPin, Users, Shield, ChevronDown, Wifi } from "lucide-react";
+import { Star, MapPin, Users, Shield, ChevronDown, Wifi, BookOpen, Utensils, Shirt, Wind, Flame, Sparkles } from "lucide-react";
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Roommate {
   name: string;
@@ -19,7 +22,7 @@ interface Roommate {
 
 interface ResidenceCardProps {
   residenceId: string;
-  image: string;
+  images: string[];
   title: string;
   location: string;
   priceMin: number;
@@ -30,13 +33,17 @@ interface ResidenceCardProps {
   availability: string[];
   currentResidents: number;
   residentsRating: number;
-  highlightedService: string;
+  services: { name: string; icon: string }[];
   roommates: Roommate[];
 }
 
+const iconMap: Record<string, any> = {
+  Wifi, BookOpen, Utensils, Shirt, Wind, Flame, Sparkles, Shield
+};
+
 export const ResidenceCard = ({
   residenceId,
-  image,
+  images,
   title,
   location,
   priceMin,
@@ -47,7 +54,7 @@ export const ResidenceCard = ({
   availability,
   currentResidents,
   residentsRating,
-  highlightedService,
+  services,
   roommates,
 }: ResidenceCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
@@ -56,11 +63,25 @@ export const ResidenceCard = ({
   return (
     <Card className="overflow-hidden cursor-pointer group">
       <div className="relative overflow-hidden aspect-[4/3]">
-        <img
-          src={image}
-          alt={title}
-          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-        />
+        <Carousel
+          opts={{ align: "start", loop: true }}
+          plugins={[Autoplay({ delay: 3000 })]}
+          className="w-full h-full"
+        >
+          <CarouselContent>
+            {images.map((img, idx) => (
+              <CarouselItem key={idx}>
+                <img
+                  src={img}
+                  alt={`${title} - Imagen ${idx + 1}`}
+                  className="w-full h-full object-cover aspect-[4/3]"
+                />
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          <CarouselPrevious className="left-2" />
+          <CarouselNext className="right-2" />
+        </Carousel>
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           {verified && (
             <Badge className="bg-secondary text-secondary-foreground gap-1">
@@ -91,10 +112,25 @@ export const ResidenceCard = ({
           <span className="line-clamp-1">{location}</span>
         </div>
         
-        <div className="flex items-center gap-2 text-sm text-muted-foreground mb-3">
-          <Wifi className="h-4 w-4" />
-          <span>{highlightedService}</span>
-        </div>
+        <TooltipProvider>
+          <div className="flex items-center gap-2 mb-3">
+            {services.slice(0, 5).map((service, idx) => {
+              const IconComponent = iconMap[service.icon] || Wifi;
+              return (
+                <Tooltip key={idx}>
+                  <TooltipTrigger asChild>
+                    <div className="p-1.5 rounded-md bg-muted/50 hover:bg-muted transition-colors">
+                      <IconComponent className="h-4 w-4 text-primary" />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p className="text-xs">{service.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              );
+            })}
+          </div>
+        </TooltipProvider>
         
         <div className="flex items-center gap-2 text-sm mb-4">
           <Users className="h-4 w-4 text-muted-foreground" />
@@ -163,7 +199,10 @@ export const ResidenceCard = ({
         <Button 
           variant="outline" 
           className="w-full"
-          onClick={() => navigate(`/residencia/${residenceId}`)}
+          onClick={() => {
+            navigate(`/residencia/${residenceId}`);
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
         >
           Ver detalles
         </Button>
