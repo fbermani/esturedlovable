@@ -44,6 +44,7 @@ const Index = () => {
 
   const featuredResidences = [
     {
+      residenceId: "residence-1",
       images: [
         new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
         new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
@@ -51,12 +52,9 @@ const Index = () => {
       ],
       title: "Residencia ***",
       location: "Centro - Av. Corrientes y San Martín",
-      priceMin: 38000,
-      priceMax: 55000,
       rating: 4.8,
       reviews: 127,
       verified: true,
-      availability: ["Doble", "Triple"],
       currentResidents: 24,
       residentsRating: 4.6,
       services: [
@@ -66,34 +64,47 @@ const Index = () => {
         { name: "Lavandería", icon: "Shirt" },
         { name: "Aire Acondicionado", icon: "Wind" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "María G.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
-          rating: 4.9,
-          description: "Estudiante de medicina, organizada y tranquila. Me gusta estudiar por las tardes y cocinar los fines de semana.",
-          badges: ["⭐", "🤝"],
-          score: 850
+          type: "Hab. Doble",
+          price: 38000,
+          occupants: [
+            {
+              name: "María G.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
+              rating: 4.9,
+              description: "Estudiante de medicina, organizada y tranquila.",
+              badges: ["⭐", "🤝"],
+              score: 850
+            }
+          ]
         },
         {
-          name: "Lucas R.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
-          rating: 4.7,
-          description: "Ingeniería, fan del deporte y música. Respetuoso con los horarios de estudio y descanso.",
-          badges: ["🤝", "💰"],
-          score: 780
-        },
-        {
-          name: "Ana P.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
-          rating: 4.8,
-          description: "Estudiante de diseño, creativa y sociable. Me encanta compartir experiencias y mantener todo ordenado.",
-          badges: ["⭐"],
-          score: 820
+          type: "Hab. Triple",
+          price: 45000,
+          occupants: [
+            {
+              name: "Lucas R.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Lucas",
+              rating: 4.7,
+              description: "Ingeniería, fan del deporte y música.",
+              badges: ["🤝", "💰"],
+              score: 780
+            },
+            {
+              name: "Ana P.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Ana",
+              rating: 4.8,
+              description: "Estudiante de diseño, creativa y sociable.",
+              badges: ["⭐"],
+              score: 820
+            }
+          ]
         }
       ]
     },
     {
+      residenceId: "residence-2",
       images: [
         new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
         new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
@@ -101,12 +112,9 @@ const Index = () => {
       ],
       title: "Casa Universitaria ***",
       location: "Recoleta - Av. Santa Fe y Callao",
-      priceMin: 45000,
-      priceMax: 62000,
       rating: 4.9,
       reviews: 95,
       verified: true,
-      availability: ["Individual", "Doble"],
       currentResidents: 18,
       residentsRating: 4.8,
       services: [
@@ -116,35 +124,25 @@ const Index = () => {
         { name: "Seguridad 24hs", icon: "Shield" },
         { name: "Limpieza", icon: "Sparkles" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "Sofia M.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
-          rating: 5.0,
-          description: "Derecho, disciplinada y amigable. Valoro la limpieza y el respeto mutuo.",
-          badges: ["⭐", "💰", "🤝"],
-          score: 920
-        },
-        {
-          name: "Diego F.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Diego",
-          rating: 4.6,
-          description: "Arquitectura, ordenado y colaborativo. Me gusta la convivencia armoniosa.",
-          badges: ["🤝"],
-          score: 740,
-          hasWarning: true
-        },
-        {
-          name: "Julia S.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Julia",
-          rating: 4.9,
-          description: "Psicología, empática y organizada. Busco compañeros responsables y respetuosos.",
-          badges: ["⭐", "🤝"],
-          score: 870
+          type: "Hab. Doble",
+          price: 45000,
+          occupants: [
+            {
+              name: "Sofia M.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
+              rating: 5.0,
+              description: "Derecho, disciplinada y amigable.",
+              badges: ["⭐", "💰", "🤝"],
+              score: 920
+            }
+          ]
         }
       ]
     },
     {
+      residenceId: "residence-3",
       images: [
         new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
         new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
@@ -152,12 +150,9 @@ const Index = () => {
       ],
       title: "Residencia del ***",
       location: "Palermo - Av. Santa Fe y Scalabrini Ortiz",
-      priceMin: 40000,
-      priceMax: 58000,
       rating: 4.7,
       reviews: 143,
       verified: true,
-      availability: ["Triple", "Cuádruple"],
       currentResidents: 32,
       residentsRating: 4.5,
       services: [
@@ -167,34 +162,33 @@ const Index = () => {
         { name: "Lavandería", icon: "Shirt" },
         { name: "Calefacción", icon: "Flame" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "Martín L.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
-          rating: 4.8,
-          description: "Economía, responsable y tranquilo. Valoro el orden y la comunicación clara.",
-          badges: ["💰", "🤝"],
-          score: 810
-        },
-        {
-          name: "Camila T.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Camila",
-          rating: 4.4,
-          description: "Comunicación social, sociable y respetuosa. Me adapto fácilmente a diferentes grupos.",
-          badges: ["🤝"],
-          score: 680
-        },
-        {
-          name: "Pablo N.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Pablo",
-          rating: 4.6,
-          description: "Informática, colaborativo y ordenado. Busco un ambiente de estudio tranquilo.",
-          badges: ["⭐", "💰"],
-          score: 750
+          type: "Hab. Triple",
+          price: 40000,
+          occupants: [
+            {
+              name: "Martín L.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
+              rating: 4.8,
+              description: "Economía, responsable y tranquilo.",
+              badges: ["💰", "🤝"],
+              score: 810
+            },
+            {
+              name: "Camila T.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Camila",
+              rating: 4.4,
+              description: "Comunicación social, sociable y respetuosa.",
+              badges: ["🤝"],
+              score: 680
+            }
+          ]
         }
       ]
     },
     {
+      residenceId: "residence-4",
       images: [
         new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
         new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
@@ -202,12 +196,9 @@ const Index = () => {
       ],
       title: "Residencia Premium ***",
       location: "Palermo - Av. Córdoba y Juan B. Justo",
-      priceMin: 48000,
-      priceMax: 68000,
       rating: 5.0,
       reviews: 93,
       verified: true,
-      availability: ["Individual"],
       currentResidents: 15,
       residentsRating: 4.9,
       services: [
@@ -217,30 +208,20 @@ const Index = () => {
         { name: "Aire Acondicionado", icon: "Wind" },
         { name: "Seguridad 24hs", icon: "Shield" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "Valentina R.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Valentina",
-          rating: 5.0,
-          description: "Medicina veterinaria, súper organizada y respetuosa. Amo los animales y la naturaleza.",
-          badges: ["⭐", "💰", "🤝"],
-          score: 950
-        },
-        {
-          name: "Tomás B.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Tomas",
-          rating: 4.8,
-          description: "Administración, responsable y sociable. Me gusta mantener todo en orden.",
-          badges: ["💰", "🤝"],
-          score: 830
-        },
-        {
-          name: "Carolina V.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Carolina",
-          rating: 4.9,
-          description: "Filosofía y letras, tranquila y considerada. Valoro el respeto y la buena convivencia.",
-          badges: ["⭐", "🤝"],
-          score: 880
+          type: "Hab. Doble",
+          price: 55000,
+          occupants: [
+            {
+              name: "Valentina R.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Valentina",
+              rating: 5.0,
+              description: "Medicina veterinaria, súper organizada y respetuosa.",
+              badges: ["⭐", "💰", "🤝"],
+              score: 950
+            }
+          ]
         }
       ]
     },

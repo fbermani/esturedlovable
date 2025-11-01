@@ -15,18 +15,16 @@ export default function AllResidences() {
   // Residencias disponibles
   const availableResidences = [
     {
+      residenceId: "residence-1",
       images: [
         new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
         new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
       ],
       title: "Residencia ***",
       location: "Centro - Av. Corrientes y San Martín",
-      priceMin: 38000,
-      priceMax: 55000,
       rating: 4.8,
       reviews: 127,
       verified: true,
-      availability: ["Doble", "Triple"],
       currentResidents: 24,
       residentsRating: 4.6,
       services: [
@@ -34,30 +32,34 @@ export default function AllResidences() {
         { name: "Cocina Equipada", icon: "Utensils" },
         { name: "Seguridad 24hs", icon: "Shield" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "María G.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
-          rating: 4.9,
-          description: "Estudiante de medicina",
-          badges: ["⭐", "🤝"],
-          score: 850
+          type: "Hab. Doble",
+          price: 38000,
+          occupants: [
+            {
+              name: "María G.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Maria",
+              rating: 4.9,
+              description: "Estudiante de medicina",
+              badges: ["⭐", "🤝"],
+              score: 850
+            }
+          ]
         }
       ]
     },
     {
+      residenceId: "residence-2",
       images: [
         new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
         new URL("@/assets/hostel-room-1.jpg", import.meta.url).href,
       ],
       title: "Casa Universitaria ***",
       location: "Recoleta - Av. Santa Fe y Callao",
-      priceMin: 45000,
-      priceMax: 62000,
       rating: 4.9,
       reviews: 95,
       verified: true,
-      availability: ["Individual", "Doble"],
       currentResidents: 18,
       residentsRating: 4.8,
       services: [
@@ -65,30 +67,34 @@ export default function AllResidences() {
         { name: "WiFi Alta Velocidad", icon: "Wifi" },
         { name: "Limpieza", icon: "Sparkles" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "Sofia M.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
-          rating: 5.0,
-          description: "Derecho",
-          badges: ["⭐", "💰", "🤝"],
-          score: 920
+          type: "Hab. Doble",
+          price: 45000,
+          occupants: [
+            {
+              name: "Sofia M.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Sofia",
+              rating: 5.0,
+              description: "Derecho",
+              badges: ["⭐", "💰", "🤝"],
+              score: 920
+            }
+          ]
         }
       ]
     },
     {
+      residenceId: "residence-3",
       images: [
         new URL("@/assets/hostel-room-3.jpg", import.meta.url).href,
         new URL("@/assets/hostel-common-2.jpg", import.meta.url).href,
       ],
       title: "Residencia del ***",
       location: "Palermo - Av. Santa Fe y Scalabrini Ortiz",
-      priceMin: 40000,
-      priceMax: 58000,
       rating: 4.7,
       reviews: 143,
       verified: true,
-      availability: ["Triple", "Cuádruple"],
       currentResidents: 32,
       residentsRating: 4.5,
       services: [
@@ -96,14 +102,20 @@ export default function AllResidences() {
         { name: "WiFi Alta Velocidad", icon: "Wifi" },
         { name: "Cocina Equipada", icon: "Utensils" },
       ],
-      roommates: [
+      availableRooms: [
         {
-          name: "Martín L.",
-          avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
-          rating: 4.8,
-          description: "Economía",
-          badges: ["💰", "🤝"],
-          score: 810
+          type: "Hab. Triple",
+          price: 40000,
+          occupants: [
+            {
+              name: "Martín L.",
+              avatar: "https://api.dicebear.com/7.x/avataaars/svg?seed=Martin",
+              rating: 4.8,
+              description: "Economía",
+              badges: ["💰", "🤝"],
+              score: 810
+            }
+          ]
         }
       ]
     },
@@ -198,7 +210,7 @@ export default function AllResidences() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {availableResidences.map((residence, index) => (
-              <ResidenceCard key={index} {...residence} residenceId={`residence-${index + 1}`} />
+              <ResidenceCard key={index} {...residence} />
             ))}
           </div>
         </div>

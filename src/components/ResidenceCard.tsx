@@ -20,21 +20,24 @@ interface Roommate {
   hasWarning?: boolean;
 }
 
+interface AvailableRoom {
+  type: string;
+  price: number;
+  occupants: Roommate[];
+}
+
 interface ResidenceCardProps {
   residenceId: string;
   images: string[];
   title: string;
   location: string;
-  priceMin: number;
-  priceMax: number;
   rating: number;
   reviews: number;
   verified: boolean;
-  availability: string[];
   currentResidents: number;
   residentsRating: number;
   services: { name: string; icon: string }[];
-  roommates: Roommate[];
+  availableRooms: AvailableRoom[];
 }
 
 const iconMap: Record<string, any> = {
@@ -46,16 +49,13 @@ export const ResidenceCard = ({
   images,
   title,
   location,
-  priceMin,
-  priceMax,
   rating,
   reviews,
   verified,
-  availability,
   currentResidents,
   residentsRating,
   services,
-  roommates,
+  availableRooms,
 }: ResidenceCardProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -87,11 +87,6 @@ export const ResidenceCard = ({
             <Badge className="bg-secondary text-secondary-foreground gap-1">
               <Shield className="h-3 w-3" />
               Verificada
-            </Badge>
-          )}
-          {availability.length > 0 && (
-            <Badge className="bg-primary text-primary-foreground gap-1">
-              {availability.join(" • ")}
             </Badge>
           )}
         </div>
@@ -141,58 +136,67 @@ export const ResidenceCard = ({
           </div>
         </div>
         
-        <div className="flex items-baseline gap-1 mb-4">
-          <span className="text-2xl font-bold text-primary">${priceMin.toLocaleString()}</span>
-          <span className="text-sm text-muted-foreground">- ${priceMax.toLocaleString()}/mes</span>
-        </div>
-
-        <Collapsible open={isOpen} onOpenChange={setIsOpen}>
-          <CollapsibleTrigger asChild>
-            <Button variant="ghost" className="w-full justify-between p-0 h-auto font-semibold text-sm">
-              Conocé a tus posibles compañeros
-              <ChevronDown className={`h-4 w-4 transition-transform ${isOpen ? 'rotate-180' : ''}`} />
-            </Button>
-          </CollapsibleTrigger>
-          <CollapsibleContent className="mt-3 space-y-3">
-            {roommates.map((roommate, idx) => (
-              <div 
-                key={idx} 
-                className="flex items-start gap-3 p-3 rounded-lg bg-muted/30 hover:bg-muted/50 cursor-pointer transition-colors"
-                onClick={() => window.location.href = `/estudiante/${idx + 1}`}
-              >
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src={roommate.avatar} alt={roommate.name} />
-                  <AvatarFallback>{roommate.name[0]}</AvatarFallback>
-                </Avatar>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="font-semibold text-sm">{roommate.name}</span>
-                    <div className="flex items-center gap-1">
-                      <Star className="h-3 w-3 fill-accent text-accent" />
-                      <span className="text-xs font-semibold">{roommate.rating}</span>
-                    </div>
-                    {roommate.badges && roommate.badges.length > 0 && (
-                      <div className="flex gap-1">
-                        {roommate.badges.slice(0, 2).map((badge, bIdx) => (
-                          <span key={bIdx} className="text-xs">{badge}</span>
-                        ))}
-                      </div>
-                    )}
-                    {roommate.hasWarning && (
-                      <Badge variant="destructive" className="text-xs px-1 py-0">⚠️</Badge>
-                    )}
-                  </div>
-                  {roommate.score && (
-                    <div className="text-xs text-primary font-semibold mb-1">
-                      {roommate.score} pts
-                    </div>
-                  )}
-                  <p className="text-xs text-muted-foreground line-clamp-2">{roommate.description}</p>
+        {/* Available Rooms with Occupants */}
+        <div className="space-y-3 mb-4">
+          {availableRooms.map((room, roomIdx) => (
+            <div key={roomIdx} className="border rounded-lg p-3 bg-muted/20">
+              <div className="flex items-baseline justify-between mb-2">
+                <Badge variant="outline" className="text-xs">
+                  {room.type}
+                </Badge>
+                <div className="flex items-baseline gap-1">
+                  <span className="text-xl font-bold text-primary">${room.price.toLocaleString()}</span>
+                  <span className="text-xs text-muted-foreground">/mes</span>
                 </div>
               </div>
-            ))}
-          </CollapsibleContent>
-        </Collapsible>
+              
+              <Collapsible>
+                <CollapsibleTrigger asChild>
+                  <Button variant="ghost" className="w-full justify-between p-0 h-auto font-medium text-xs mb-2">
+                    {room.occupants.length > 0 ? 'Conocé a tus compañeros' : 'Ver habitación'}
+                    <ChevronDown className="h-3 w-3" />
+                  </Button>
+                </CollapsibleTrigger>
+                <CollapsibleContent className="space-y-2 mt-2">
+                  {room.occupants.map((occupant, occIdx) => (
+                    <div 
+                      key={occIdx}
+                      className="flex items-start gap-2 p-2 rounded-md bg-background hover:bg-muted/50 cursor-pointer transition-colors"
+                      onClick={() => window.location.href = `/estudiante/${occIdx + 1}`}
+                    >
+                      <Avatar className="h-8 w-8">
+                        <AvatarImage src={occupant.avatar} alt={occupant.name} />
+                        <AvatarFallback>{occupant.name[0]}</AvatarFallback>
+                      </Avatar>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center gap-1.5 mb-0.5 flex-wrap">
+                          <span className="font-semibold text-xs">{occupant.name}</span>
+                          <div className="flex items-center gap-0.5">
+                            <Star className="h-2.5 w-2.5 fill-accent text-accent" />
+                            <span className="text-[10px] font-semibold">{occupant.rating}</span>
+                          </div>
+                          {occupant.badges && occupant.badges.length > 0 && (
+                            <div className="flex gap-0.5">
+                              {occupant.badges.slice(0, 2).map((badge, bIdx) => (
+                                <span key={bIdx} className="text-[10px]">{badge}</span>
+                              ))}
+                            </div>
+                          )}
+                        </div>
+                        {occupant.score && (
+                          <div className="text-[10px] text-primary font-semibold mb-0.5">
+                            {occupant.score} pts
+                          </div>
+                        )}
+                        <p className="text-[10px] text-muted-foreground line-clamp-1">{occupant.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </CollapsibleContent>
+              </Collapsible>
+            </div>
+          ))}
+        </div>
       </CardContent>
       
       <CardFooter className="p-5 pt-0">
