@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { PointsSystem } from "@/components/PointsSystem";
 import { Footer } from "@/components/Footer";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu, UserCircle, LayoutDashboard, Users, CreditCard, Wrench, FileText, TrendingUp, Package, Building2, AlertTriangle, Trophy, Star, Award, Shield } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -137,6 +138,7 @@ const ResidencePMS = () => {
           </div>
           
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
                 <Button variant="ghost" size="icon" className="md:hidden">

@@ -8,7 +8,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Autoplay from "embla-carousel-autoplay";
 
 interface Roommate {
   name: string;
@@ -65,7 +64,6 @@ export const ResidenceCard = ({
       <div className="relative overflow-hidden aspect-[4/3]">
         <Carousel
           opts={{ align: "start", loop: true }}
-          plugins={[Autoplay({ delay: 3000 })]}
           className="w-full h-full"
         >
           <CarouselContent>

@@ -7,6 +7,7 @@ import { Footer } from "@/components/Footer";
 import { ProfileSelector } from "@/components/ProfileSelector";
 import { LoginDialog } from "@/components/LoginDialog";
 import { ResidenceContactForm } from "@/components/ResidenceContactForm";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
 import heroImage from "@/assets/hero-shared-room.jpg";
@@ -274,6 +275,7 @@ const Index = () => {
           </div>
           
           <div className="flex items-center gap-3">
+            <ThemeToggle />
             <Button 
               variant="ghost" 
               size="sm" 

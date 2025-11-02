@@ -32,6 +32,7 @@ import {
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { BookingForm } from "@/components/BookingForm";
 import { ChatDialog } from "@/components/ChatDialog";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 
 interface RoomDetails {
@@ -173,8 +174,17 @@ export default function ResidenceDetails() {
     ],
   };
 
-  // Filtrar solo las habitaciones con al menos una plaza disponible
+  // Mostrar TODAS las habitaciones disponibles (con al menos 1 plaza)
   const availableRooms = residence.rooms.filter(room => room.available > 0);
+  
+  // Calcular resumen de habitaciones por tipo
+  const roomSummary = residence.rooms.reduce((acc, room) => {
+    if (!acc[room.type]) {
+      acc[room.type] = 0;
+    }
+    acc[room.type] += room.total;
+    return acc;
+  }, {} as Record<string, number>);
 
   return (
     <div className="min-h-screen bg-background">
@@ -187,7 +197,7 @@ export default function ResidenceDetails() {
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Sin Fronteras
           </h1>
-          <div className="w-20" /> {/* Spacer */}
+          <ThemeToggle />
         </div>
       </header>
 
@@ -489,6 +499,20 @@ export default function ResidenceDetails() {
                         <p className="text-muted-foreground">
                           {residence.coordinator}
                         </p>
+                      </div>
+                    </div>
+
+                    <div className="flex items-start gap-2">
+                      <Home className="h-4 w-4 text-muted-foreground mt-0.5" />
+                      <div>
+                        <p className="font-medium">Habitaciones disponibles</p>
+                        <div className="text-muted-foreground text-sm space-y-1">
+                          {Object.entries(roomSummary).map(([type, count]) => (
+                            <p key={type}>
+                              {count} {type}{count > 1 ? 's' : ''}
+                            </p>
+                          ))}
+                        </div>
                       </div>
                     </div>
 

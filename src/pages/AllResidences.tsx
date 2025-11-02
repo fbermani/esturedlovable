@@ -4,6 +4,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { useState } from "react";
 import { Bell, X } from "lucide-react";
 
@@ -197,7 +198,7 @@ export default function AllResidences() {
           <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
             Sin Fronteras
           </h1>
-          <div className="w-20" />
+          <ThemeToggle />
         </div>
       </header>
 
