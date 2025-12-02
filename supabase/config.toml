@@ -1,1 +1,4 @@
 project_id = "kkorrjahfkpjgakhkrsv"
+
+[functions.residence-assistant]
+verify_jwt = false

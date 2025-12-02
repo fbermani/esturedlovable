@@ -8,6 +8,7 @@ import { ProfileSelector } from "@/components/ProfileSelector";
 import { LoginDialog } from "@/components/LoginDialog";
 import { ResidenceContactForm } from "@/components/ResidenceContactForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { ResidenceAssistant } from "@/components/ResidenceAssistant";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
 import heroImage from "@/assets/hero-shared-room.jpg";
@@ -497,6 +498,7 @@ const Index = () => {
       </section>
 
       <Footer />
+      <ResidenceAssistant />
     </div>
   );
 };
