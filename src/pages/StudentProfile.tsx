@@ -3,6 +3,8 @@ import { SearchBar } from "@/components/SearchBar";
 import { PointsSystem } from "@/components/PointsSystem";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, UserCircle, BookOpen, Users, Award, GraduationCap, Trophy, Star, Target } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -11,71 +13,81 @@ import { useState } from "react";
 
 const StudentProfile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { t } = useLanguage();
 
   const badges = [
     {
-      level: "Novato",
+      level: t("student.badge.novice"),
       icon: Target,
       color: "bg-gray-500",
-      requirements: "0-100 puntos",
-      description: "Estás comenzando tu camino. Completá tu perfil y realizá tu primera evaluación.",
-      benefits: ["Acceso básico al portal", "Búsqueda de residencias"]
+      requirements: t("student.badge.novice.req"),
+      description: t("student.badge.novice.desc"),
+      benefits: [t("student.badge.novice.benefit1"), t("student.badge.novice.benefit2")]
     },
     {
-      level: "Bronce",
+      level: t("student.badge.bronze"),
       icon: Award,
       color: "bg-amber-700",
-      requirements: "100-300 puntos",
-      description: "¡Buen comienzo! Ya tenés evaluaciones positivas y tu perfil está completo.",
-      benefits: ["10% descuento en primera reserva", "Prioridad en respuestas"]
+      requirements: t("student.badge.bronze.req"),
+      description: t("student.badge.bronze.desc"),
+      benefits: [t("student.badge.bronze.benefit1"), t("student.badge.bronze.benefit2")]
     },
     {
-      level: "Plata",
+      level: t("student.badge.silver"),
       icon: Star,
       color: "bg-gray-400",
-      requirements: "300-600 puntos",
-      description: "Excelente convivencia. Tus compañeros y residencias te valoran positivamente.",
-      benefits: ["15% descuento", "Badge visible en perfil", "Acceso a eventos exclusivos"]
+      requirements: t("student.badge.silver.req"),
+      description: t("student.badge.silver.desc"),
+      benefits: [t("student.badge.silver.benefit1"), t("student.badge.silver.benefit2"), t("student.badge.silver.benefit3")]
     },
     {
-      level: "Oro",
+      level: t("student.badge.gold"),
       icon: Trophy,
       color: "bg-yellow-500",
-      requirements: "600-1000 puntos",
-      description: "Sos un ejemplo de convivencia. Tu comportamiento es destacado en la comunidad.",
-      benefits: ["20% descuento", "Prioridad en reservas", "Acceso VIP a nuevas residencias"]
+      requirements: t("student.badge.gold.req"),
+      description: t("student.badge.gold.desc"),
+      benefits: [t("student.badge.gold.benefit1"), t("student.badge.gold.benefit2"), t("student.badge.gold.benefit3")]
     },
     {
-      level: "Platino",
+      level: t("student.badge.platinum"),
       icon: GraduationCap,
       color: "bg-purple-500",
-      requirements: "1000+ puntos",
-      description: "¡Nivel máximo! Sos referente en la comunidad y tu perfil es ejemplo para otros.",
-      benefits: ["25% descuento permanente", "Programa de embajador", "Beneficios premium de por vida"]
+      requirements: t("student.badge.platinum.req"),
+      description: t("student.badge.platinum.desc"),
+      benefits: [t("student.badge.platinum.benefit1"), t("student.badge.platinum.benefit2"), t("student.badge.platinum.benefit3")]
     }
   ];
 
   const resources = [
     {
       icon: BookOpen,
-      title: "Tutorías y Apoyo Académico",
-      description: "Conectá con tutores verificados o ofrecé tu ayuda a otros estudiantes",
+      title: t("student.resource.tutoring.title"),
+      description: t("student.resource.tutoring.desc"),
     },
     {
       icon: Users,
-      title: "Guía de Convivencia",
-      description: "Aprendé las mejores prácticas para una convivencia armoniosa",
+      title: t("student.resource.coexistence.title"),
+      description: t("student.resource.coexistence.desc"),
     },
     {
       icon: Award,
-      title: "Sistema de Calificaciones",
-      description: "Entendé cómo funcionan las reseñas y calificaciones entre compañeros",
+      title: t("student.resource.ratings.title"),
+      description: t("student.resource.ratings.desc"),
     },
     {
       icon: GraduationCap,
-      title: "Recursos Estudiantiles",
-      description: "Descuentos en cursos, gimnasios, eventos y más beneficios exclusivos",
+      title: t("student.resource.studentResources.title"),
+      description: t("student.resource.studentResources.desc"),
     },
+  ];
+
+  const concepts = [
+    t("student.behavior.order"),
+    t("student.behavior.cleanliness"),
+    t("student.behavior.interactions"),
+    t("student.behavior.empathy"),
+    t("student.behavior.tolerance"),
+    t("student.behavior.personality")
   ];
 
   return (
@@ -91,21 +103,22 @@ const StudentProfile = () => {
             </a>
             <nav className="hidden md:flex gap-6">
               <a href="/#featured-residences" className="text-sm font-medium hover:text-primary transition-colors">
-                Buscar
+                {t("nav.search")}
               </a>
               <a href="/estudiantes" className="text-sm font-medium text-primary">
-                Para Estudiantes
+                {t("nav.forStudents")}
               </a>
               <a href="/padres" className="text-sm font-medium hover:text-primary transition-colors">
-                Para Padres
+                {t("nav.forParents")}
               </a>
               <a href="/residencias-pms" className="text-sm font-medium hover:text-primary transition-colors">
-                Para Residencias
+                {t("nav.forResidences")}
               </a>
             </nav>
           </div>
           
           <div className="flex items-center gap-3">
+            <LanguageSelector />
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -115,27 +128,27 @@ const StudentProfile = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <SheetHeader>
-                  <SheetTitle>Menú</SheetTitle>
+                  <SheetTitle>{t("nav.menu")}</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">
                   <a href="/#featured-residences" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Buscar
+                    {t("nav.search")}
                   </a>
                   <a href="/estudiantes" className="text-base font-medium text-primary py-2">
-                    Para Estudiantes
+                    {t("nav.forStudents")}
                   </a>
                   <a href="/padres" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Para Padres
+                    {t("nav.forParents")}
                   </a>
                   <a href="/residencias-pms" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Para Residencias
+                    {t("nav.forResidences")}
                   </a>
                 </nav>
               </SheetContent>
             </Sheet>
             <Button variant="outline" size="sm" className="gap-2">
               <UserCircle className="h-4 w-4" />
-              <span className="hidden md:inline">Ingresar</span>
+              <span className="hidden md:inline">{t("nav.login")}</span>
             </Button>
           </div>
         </div>
@@ -145,9 +158,9 @@ const StudentProfile = () => {
       <section className="relative overflow-hidden bg-gradient-to-br from-primary/10 via-background to-secondary/10">
         <div className="max-w-7xl mx-auto px-4 py-16">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-5xl font-bold mb-4">Portal para Estudiantes</h2>
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">{t("student.hero.title")}</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Encontrá tu residencia ideal, conectá con compañeros y accedé a recursos exclusivos
+              {t("student.hero.subtitle")}
             </p>
           </div>
           
@@ -161,25 +174,24 @@ const StudentProfile = () => {
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Tu Comportamiento También Cuenta</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("student.behavior.title")}</h2>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Los rankings no son sólo para las residencias. Tu comportamiento tiene puntaje y beneficios.
+              {t("student.behavior.subtitle")}
             </p>
           </div>
 
           <Card className="mb-8">
             <CardHeader>
-              <CardTitle className="text-2xl">¿Cómo Funciona Tu Puntuación?</CardTitle>
+              <CardTitle className="text-2xl">{t("student.behavior.howItWorks")}</CardTitle>
               <CardDescription className="text-base">
-                Tu puntuación es un mix entre las valoraciones de tus compañeros pasados o actuales, 
-                y la valoración de las residencias hacia vos.
+                {t("student.behavior.howItWorksDesc")}
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-6">
               <div>
-                <h3 className="font-bold text-lg mb-3">Conceptos de Convivencia Valorados:</h3>
+                <h3 className="font-bold text-lg mb-3">{t("student.behavior.concepts")}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                  {["Orden", "Limpieza", "Interacciones", "Empatía", "Tolerancia", "Forma de ser"].map((concept) => (
+                  {concepts.map((concept) => (
                     <div key={concept} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
                       <Award className="h-5 w-5 text-primary" />
                       <span className="font-medium">{concept}</span>
@@ -189,28 +201,26 @@ const StudentProfile = () => {
               </div>
 
               <div className="border-t pt-6">
-                <h3 className="font-bold text-lg mb-3">Tu Perfil, Tu Decisión:</h3>
+                <h3 className="font-bold text-lg mb-3">{t("student.behavior.profileDecision")}</h3>
                 <p className="text-muted-foreground mb-4">
-                  Cada estudiante escribe en su perfil lo que quiere para describirse, y elige qué muestra y qué no al público.
+                  {t("student.behavior.profileDecisionDesc")}
                 </p>
                 <div className="bg-accent/10 border-l-4 border-accent p-4 rounded">
                   <p className="font-semibold text-accent-foreground mb-2">
-                    💡 Mientras más completes y muestres tu perfil:
+                    {t("student.behavior.profileTip")}
                   </p>
                   <ul className="space-y-2 text-sm text-muted-foreground">
-                    <li>✓ Mejores beneficios obtenés</li>
-                    <li>✓ Más probable es que consigas compañeros acorde a tus características</li>
-                    <li>✓ Mayor confianza generás en residencias y otros estudiantes</li>
+                    <li>✓ {t("student.behavior.profileBenefit1")}</li>
+                    <li>✓ {t("student.behavior.profileBenefit2")}</li>
+                    <li>✓ {t("student.behavior.profileBenefit3")}</li>
                   </ul>
                 </div>
               </div>
 
               <div className="border-t pt-6">
-                <h3 className="font-bold text-lg mb-3">Evaluación de las Residencias:</h3>
+                <h3 className="font-bold text-lg mb-3">{t("student.behavior.residenceEval")}</h3>
                 <p className="text-muted-foreground">
-                  Las residencias también completan un perfil de cada estudiante. Los llamados de atención o expulsiones 
-                  influyen en el puntaje, apareciendo únicamente la advertencia en cada perfil, pero no el detalle de lo sucedido.
-                  Esto mantiene tu privacidad mientras asegura transparencia en la comunidad.
+                  {t("student.behavior.residenceEvalDesc")}
                 </p>
               </div>
             </CardContent>
@@ -222,16 +232,16 @@ const StudentProfile = () => {
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Puntos y Badges</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("student.points.title")}</h2>
             <p className="text-lg text-muted-foreground">
-              Ganá beneficios mientras ayudás a la comunidad
+              {t("student.points.subtitle")}
             </p>
           </div>
           <PointsSystem userType="student" />
 
           {/* Badges Detail */}
           <div className="mt-12">
-            <h3 className="text-2xl font-bold text-center mb-8">Niveles de Badges</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">{t("student.badges.title")}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {badges.map((badge, index) => {
                 const Icon = badge.icon;
@@ -250,7 +260,7 @@ const StudentProfile = () => {
                       <CardDescription className="text-sm">{badge.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm font-semibold mb-2">Beneficios:</p>
+                      <p className="text-sm font-semibold mb-2">{t("student.badges.benefits")}</p>
                       <ul className="space-y-1">
                         {badge.benefits.map((benefit, idx) => (
                           <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
@@ -272,9 +282,9 @@ const StudentProfile = () => {
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Recursos para Estudiantes</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("student.resources.title")}</h2>
             <p className="text-lg text-muted-foreground">
-              Aprovechá todas las herramientas disponibles para tu vida universitaria
+              {t("student.resources.subtitle")}
             </p>
           </div>
           
@@ -293,7 +303,7 @@ const StudentProfile = () => {
                     <CardDescription>{resource.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="outline" className="w-full">Explorar</Button>
+                    <Button variant="outline" className="w-full">{t("student.resources.explore")}</Button>
                   </CardContent>
                 </Card>
               );
@@ -306,34 +316,34 @@ const StudentProfile = () => {
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Normas de Convivencia Básicas</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("student.coexistence.title")}</h2>
             <p className="text-lg text-muted-foreground">
-              Principios fundamentales para una convivencia armoniosa
+              {t("student.coexistence.subtitle")}
             </p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Respeto Mutuo</CardTitle>
+                <CardTitle className="text-lg">{t("student.coexistence.respect.title")}</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Respetá los horarios de estudio y descanso de tus compañeros. La empatía es clave para una buena convivencia.
+                {t("student.coexistence.respect.desc")}
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Comunicación Clara</CardTitle>
+                <CardTitle className="text-lg">{t("student.coexistence.communication.title")}</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Hablá abiertamente sobre expectativas y necesidades. La comunicación previene conflictos.
+                {t("student.coexistence.communication.desc")}
               </CardContent>
             </Card>
             <Card>
               <CardHeader>
-                <CardTitle className="text-lg">Responsabilidad Compartida</CardTitle>
+                <CardTitle className="text-lg">{t("student.coexistence.responsibility.title")}</CardTitle>
               </CardHeader>
               <CardContent className="text-sm text-muted-foreground">
-                Participá en la limpieza y mantenimiento de espacios comunes. Todos somos responsables del entorno.
+                {t("student.coexistence.responsibility.desc")}
               </CardContent>
             </Card>
           </div>
