@@ -2,6 +2,8 @@ import { Button } from "@/components/ui/button";
 import { PointsSystem } from "@/components/PointsSystem";
 import { Footer } from "@/components/Footer";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSelector } from "@/components/LanguageSelector";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, UserCircle, MessageCircle, Shield, FileText, Gift, Users, BookOpen, CheckCircle2, Trophy, Star, Award } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from "@/components/ui/collapsible";
@@ -12,316 +14,168 @@ import { useState } from "react";
 const ParentProfile = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [evaluationOpen, setEvaluationOpen] = useState(false);
+  const { t } = useLanguage();
 
   const badges = [
     {
-      level: "Nuevo Miembro",
+      level: t("parent.badge.newMember"),
       icon: Users,
       color: "bg-gray-500",
-      requirements: "0-50 puntos",
-      description: "Bienvenido a la comunidad. Comenzá participando y conociendo otros padres.",
-      benefits: ["Acceso a foro básico", "Visualización de residencias verificadas"]
+      requirements: t("parent.badge.newMember.req"),
+      description: t("parent.badge.newMember.desc"),
+      benefits: [t("parent.badge.newMember.benefit1"), t("parent.badge.newMember.benefit2")]
     },
     {
-      level: "Colaborador",
+      level: t("parent.badge.collaborator"),
       icon: MessageCircle,
       color: "bg-blue-500",
-      requirements: "50-150 puntos",
-      description: "Ya participás activamente en la comunidad compartiendo experiencias.",
-      benefits: ["5% descuento en eventos", "Acceso a grupos privados", "Newsletter mensual"]
+      requirements: t("parent.badge.collaborator.req"),
+      description: t("parent.badge.collaborator.desc"),
+      benefits: [t("parent.badge.collaborator.benefit1"), t("parent.badge.collaborator.benefit2"), t("parent.badge.collaborator.benefit3")]
     },
     {
-      level: "Miembro Activo",
+      level: t("parent.badge.active"),
       icon: Star,
       color: "bg-indigo-500",
-      requirements: "150-350 puntos",
-      description: "Tu participación es valiosa. Ayudás a otros padres con tus consejos.",
-      benefits: ["10% descuento en hoteles", "Invitaciones a eventos premium", "Asesoría prioritaria"]
+      requirements: t("parent.badge.active.req"),
+      description: t("parent.badge.active.desc"),
+      benefits: [t("parent.badge.active.benefit1"), t("parent.badge.active.benefit2"), t("parent.badge.active.benefit3")]
     },
     {
-      level: "Experto",
+      level: t("parent.badge.expert"),
       icon: Trophy,
       color: "bg-yellow-500",
-      requirements: "350-600 puntos",
-      description: "Sos referente en la comunidad. Tus aportes son muy valorados.",
-      benefits: ["15% descuento permanente", "Moderador de grupos", "Acceso VIP a recursos"]
+      requirements: t("parent.badge.expert.req"),
+      description: t("parent.badge.expert.desc"),
+      benefits: [t("parent.badge.expert.benefit1"), t("parent.badge.expert.benefit2"), t("parent.badge.expert.benefit3")]
     },
     {
-      level: "Embajador",
+      level: t("parent.badge.ambassador"),
       icon: Award,
       color: "bg-purple-600",
-      requirements: "600+ puntos",
-      description: "Nivel máximo. Representás lo mejor de nuestra comunidad de padres.",
-      benefits: ["20% descuento de por vida", "Eventos exclusivos", "Participación en decisiones de la plataforma"]
+      requirements: t("parent.badge.ambassador.req"),
+      description: t("parent.badge.ambassador.desc"),
+      benefits: [t("parent.badge.ambassador.benefit1"), t("parent.badge.ambassador.benefit2"), t("parent.badge.ambassador.benefit3")]
     }
   ];
 
   const resources = [
-    {
-      icon: MessageCircle,
-      title: "Comunidad de Padres",
-      description: "Conectá con otros padres, compartí experiencias y obtené consejos",
-      featured: true,
-    },
-    {
-      icon: Shield,
-      title: "Guía de Seguridad",
-      description: "Todo lo que necesitás saber sobre la seguridad de tu hijo/a",
-    },
-    {
-      icon: FileText,
-      title: "Manual de Comportamiento",
-      description: "Normas y reglamentos de las residencias estudiantiles",
-    },
-    {
-      icon: Gift,
-      title: "Descuentos y Beneficios",
-      description: "Acceso a descuentos en hoteles, transporte y servicios turísticos",
-    },
-    {
-      icon: Users,
-      title: "Comunicación con Residencias",
-      description: "Contacto directo y transparente con las residencias",
-    },
-    {
-      icon: BookOpen,
-      title: "Recursos de Apoyo",
-      description: "Guías prácticas para ayudar a tu hijo/a en su vida universitaria",
-    },
+    { icon: MessageCircle, title: t("parent.resource.community.title"), description: t("parent.resource.community.desc"), featured: true },
+    { icon: Shield, title: t("parent.resource.security.title"), description: t("parent.resource.security.desc") },
+    { icon: FileText, title: t("parent.resource.behavior.title"), description: t("parent.resource.behavior.desc") },
+    { icon: Gift, title: t("parent.resource.discounts.title"), description: t("parent.resource.discounts.desc") },
+    { icon: Users, title: t("parent.resource.communication.title"), description: t("parent.resource.communication.desc") },
+    { icon: BookOpen, title: t("parent.resource.support.title"), description: t("parent.resource.support.desc") },
+  ];
+
+  const concepts = [
+    t("student.behavior.order"), t("student.behavior.cleanliness"), t("student.behavior.interactions"),
+    t("student.behavior.empathy"), t("student.behavior.tolerance"), t("student.behavior.personality")
   ];
 
   return (
     <div className="min-h-screen">
-      {/* Header */}
       <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
           <div className="flex items-center gap-8">
-            <a href="/">
-              <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Sin Fronteras
-              </h1>
-            </a>
+            <a href="/"><h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">Sin Fronteras</h1></a>
             <nav className="hidden md:flex gap-6">
-              <a href="/#featured-residences" className="text-sm font-medium hover:text-primary transition-colors">
-                Buscar
-              </a>
-              <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">
-                Para Estudiantes
-              </a>
-              <a href="/padres" className="text-sm font-medium text-primary">
-                Para Padres
-              </a>
-              <a href="/residencias-pms" className="text-sm font-medium hover:text-primary transition-colors">
-                Para Residencias
-              </a>
+              <a href="/#featured-residences" className="text-sm font-medium hover:text-primary transition-colors">{t("nav.search")}</a>
+              <a href="/estudiantes" className="text-sm font-medium hover:text-primary transition-colors">{t("nav.forStudents")}</a>
+              <a href="/padres" className="text-sm font-medium text-primary">{t("nav.forParents")}</a>
+              <a href="/residencias-pms" className="text-sm font-medium hover:text-primary transition-colors">{t("nav.forResidences")}</a>
             </nav>
           </div>
-          
           <div className="flex items-center gap-3">
+            <LanguageSelector />
             <ThemeToggle />
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button variant="ghost" size="icon" className="md:hidden">
-                  <Menu className="h-5 w-5" />
-                </Button>
-              </SheetTrigger>
+              <SheetTrigger asChild><Button variant="ghost" size="icon" className="md:hidden"><Menu className="h-5 w-5" /></Button></SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
-                <SheetHeader>
-                  <SheetTitle>Menú</SheetTitle>
-                </SheetHeader>
+                <SheetHeader><SheetTitle>{t("nav.menu")}</SheetTitle></SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">
-                  <a href="/#featured-residences" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Buscar
-                  </a>
-                  <a href="/estudiantes" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Para Estudiantes
-                  </a>
-                  <a href="/padres" className="text-base font-medium text-primary py-2">
-                    Para Padres
-                  </a>
-                  <a href="/residencias-pms" className="text-base font-medium hover:text-primary transition-colors py-2">
-                    Para Residencias
-                  </a>
+                  <a href="/#featured-residences" className="text-base font-medium hover:text-primary transition-colors py-2">{t("nav.search")}</a>
+                  <a href="/estudiantes" className="text-base font-medium hover:text-primary transition-colors py-2">{t("nav.forStudents")}</a>
+                  <a href="/padres" className="text-base font-medium text-primary py-2">{t("nav.forParents")}</a>
+                  <a href="/residencias-pms" className="text-base font-medium hover:text-primary transition-colors py-2">{t("nav.forResidences")}</a>
                 </nav>
               </SheetContent>
             </Sheet>
-            <Button variant="outline" size="sm" className="gap-2">
-              <UserCircle className="h-4 w-4" />
-              <span className="hidden md:inline">Ingresar</span>
-            </Button>
+            <Button variant="outline" size="sm" className="gap-2"><UserCircle className="h-4 w-4" /><span className="hidden md:inline">{t("nav.login")}</span></Button>
           </div>
         </div>
       </header>
 
-      {/* Hero Section */}
       <section className="relative overflow-hidden bg-gradient-to-br from-secondary/10 via-background to-primary/10">
         <div className="max-w-7xl mx-auto px-4 py-16 text-center">
-          <h2 className="text-3xl md:text-5xl font-bold mb-4">Portal para Padres</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-            Acompañá a tu hijo/a con tranquilidad y seguridad. Conectá con la comunidad y accedé a recursos exclusivos.
-          </p>
+          <h2 className="text-3xl md:text-5xl font-bold mb-4">{t("parent.hero.title")}</h2>
+          <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">{t("parent.hero.subtitle")}</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button size="lg" variant="hero">
-              Unirme a la Comunidad Premium
-            </Button>
-            <Button size="lg" variant="outline">
-              Ver Residencias Verificadas
-            </Button>
+            <Button size="lg" variant="hero">{t("parent.hero.joinCommunity")}</Button>
+            <Button size="lg" variant="outline">{t("parent.hero.viewResidences")}</Button>
           </div>
         </div>
       </section>
 
-      {/* Privacy and Security */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-4xl mx-auto px-4">
           <div className="text-center mb-8">
             <Shield className="h-16 w-16 text-primary mx-auto mb-4" />
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Privacidad y Seguridad</h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              Tu perfil está vinculado al de tu hijo/a mediante verificación de DNI. Por motivos de privacidad, podrás contactar con otros padres pero no con estudiantes directamente.
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.privacy.title")}</h2>
+            <p className="text-lg text-muted-foreground mb-8">{t("parent.privacy.desc")}</p>
             <div className="bg-accent/10 border-l-4 border-accent p-6 rounded text-left">
-              <p className="font-semibold mb-3">Tendrás acceso completo a:</p>
+              <p className="font-semibold mb-3">{t("parent.privacy.access")}</p>
               <ul className="space-y-2 text-muted-foreground">
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <span>Información de residencias y documentación legal</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <span>Foro de padres y grupos de discusión privados</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <span>Comunicación directa con las residencias</span>
-                </li>
-                <li className="flex items-start gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" />
-                  <span>Perfil y evaluaciones de tu hijo/a</span>
-                </li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" /><span>{t("parent.privacy.access1")}</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" /><span>{t("parent.privacy.access2")}</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" /><span>{t("parent.privacy.access3")}</span></li>
+                <li className="flex items-start gap-2"><CheckCircle2 className="h-5 w-5 text-accent shrink-0 mt-0.5" /><span>{t("parent.privacy.access4")}</span></li>
               </ul>
             </div>
-            <Button size="lg" variant="outline" className="mt-6">Ver Política de Privacidad</Button>
+            <Button size="lg" variant="outline" className="mt-6">{t("parent.privacy.policy")}</Button>
           </div>
         </div>
       </section>
 
-      {/* Verification Process */}
       <section className="py-16">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Proceso de Verificación de Residencias</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Garantizamos la calidad y seguridad de cada residencia en nuestra plataforma
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.verification.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{t("parent.verification.subtitle")}</p>
           </div>
-
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            <Card>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                  <Shield className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Visitas Personales</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                Recorremos personalmente todas las residencias y corroboramos las instalaciones y servicios ofrecidos.
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                  <Users className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Conocemos a los Responsables</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                Nos reunimos con dueños y coordinadores para asegurar compromiso con la calidad y bienestar estudiantil.
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                  <MessageCircle className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Feedback de Estudiantes</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                Hablamos con estudiantes actuales para obtener feedback honesto sobre cada residencia.
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3">
-                  <CheckCircle2 className="h-6 w-6 text-primary" />
-                </div>
-                <CardTitle>Plan de Mejoras</CardTitle>
-              </CardHeader>
-              <CardContent className="text-muted-foreground">
-                Implementamos un plan de mejoras y otorgamos sugerencias para aumentar la calidad de cada establecimiento.
-              </CardContent>
-            </Card>
+            <Card><CardHeader><div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3"><Shield className="h-6 w-6 text-primary" /></div><CardTitle>{t("parent.verification.visits.title")}</CardTitle></CardHeader><CardContent className="text-muted-foreground">{t("parent.verification.visits.desc")}</CardContent></Card>
+            <Card><CardHeader><div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3"><Users className="h-6 w-6 text-primary" /></div><CardTitle>{t("parent.verification.responsible.title")}</CardTitle></CardHeader><CardContent className="text-muted-foreground">{t("parent.verification.responsible.desc")}</CardContent></Card>
+            <Card><CardHeader><div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3"><MessageCircle className="h-6 w-6 text-primary" /></div><CardTitle>{t("parent.verification.feedback.title")}</CardTitle></CardHeader><CardContent className="text-muted-foreground">{t("parent.verification.feedback.desc")}</CardContent></Card>
+            <Card><CardHeader><div className="h-12 w-12 rounded-xl bg-primary/10 flex items-center justify-center mb-3"><CheckCircle2 className="h-6 w-6 text-primary" /></div><CardTitle>{t("parent.verification.improvements.title")}</CardTitle></CardHeader><CardContent className="text-muted-foreground">{t("parent.verification.improvements.desc")}</CardContent></Card>
           </div>
         </div>
       </section>
 
-      {/* Community */}
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
-            <Badge className="mb-4 bg-secondary text-secondary-foreground">COMUNIDAD</Badge>
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Comunidad de Padres</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Conectá con otros padres que están pasando por la misma experiencia. Compartí consejos, preocupaciones y soluciones.
-            </p>
+            <Badge className="mb-4 bg-secondary text-secondary-foreground">{t("parent.community.badge")}</Badge>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.community.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">{t("parent.community.subtitle")}</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Foro de Discusión</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Participá en conversaciones sobre alojamiento, seguridad y experiencias universitarias
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Eventos y Encuentros</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Conocé a otros padres en eventos organizados cuando visitás a tu hijo/a
-              </CardContent>
-            </Card>
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Descuentos Exclusivos</CardTitle>
-              </CardHeader>
-              <CardContent className="text-sm text-muted-foreground">
-                Accedé a descuentos en hoteles, transporte y servicios para tus visitas
-              </CardContent>
-            </Card>
+            <Card><CardHeader><CardTitle className="text-lg">{t("parent.community.forum.title")}</CardTitle></CardHeader><CardContent className="text-sm text-muted-foreground">{t("parent.community.forum.desc")}</CardContent></Card>
+            <Card><CardHeader><CardTitle className="text-lg">{t("parent.community.events.title")}</CardTitle></CardHeader><CardContent className="text-sm text-muted-foreground">{t("parent.community.events.desc")}</CardContent></Card>
+            <Card><CardHeader><CardTitle className="text-lg">{t("parent.community.discounts.title")}</CardTitle></CardHeader><CardContent className="text-sm text-muted-foreground">{t("parent.community.discounts.desc")}</CardContent></Card>
           </div>
         </div>
       </section>
 
-      {/* Points System */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Puntos y Badges</h2>
-            <p className="text-lg text-muted-foreground">
-              Ganá beneficios mientras ayudás a otros padres y participás en la comunidad
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.points.title")}</h2>
+            <p className="text-lg text-muted-foreground">{t("parent.points.subtitle")}</p>
           </div>
           <PointsSystem userType="parent" />
-
-          {/* Badges Detail */}
           <div className="mt-12">
-            <h3 className="text-2xl font-bold text-center mb-8">Niveles de Membresía</h3>
+            <h3 className="text-2xl font-bold text-center mb-8">{t("parent.badges.title")}</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {badges.map((badge, index) => {
                 const Icon = badge.icon;
@@ -329,26 +183,14 @@ const ParentProfile = () => {
                   <Card key={index} className="hover:shadow-lg transition-shadow">
                     <CardHeader>
                       <div className="flex items-center gap-3 mb-2">
-                        <div className={`h-12 w-12 rounded-xl ${badge.color} flex items-center justify-center`}>
-                          <Icon className="h-6 w-6 text-white" />
-                        </div>
-                        <div>
-                          <CardTitle className="text-lg">{badge.level}</CardTitle>
-                          <Badge variant="secondary" className="text-xs">{badge.requirements}</Badge>
-                        </div>
+                        <div className={`h-12 w-12 rounded-xl ${badge.color} flex items-center justify-center`}><Icon className="h-6 w-6 text-white" /></div>
+                        <div><CardTitle className="text-lg">{badge.level}</CardTitle><Badge variant="secondary" className="text-xs">{badge.requirements}</Badge></div>
                       </div>
                       <CardDescription className="text-sm">{badge.description}</CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <p className="text-sm font-semibold mb-2">Beneficios:</p>
-                      <ul className="space-y-1">
-                        {badge.benefits.map((benefit, idx) => (
-                          <li key={idx} className="text-xs text-muted-foreground flex items-start gap-2">
-                            <span className="text-primary">✓</span>
-                            <span>{benefit}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      <p className="text-sm font-semibold mb-2">{t("student.badges.benefits")}</p>
+                      <ul className="space-y-1">{badge.benefits.map((benefit, idx) => (<li key={idx} className="text-xs text-muted-foreground flex items-start gap-2"><span className="text-primary">✓</span><span>{benefit}</span></li>))}</ul>
                     </CardContent>
                   </Card>
                 );
@@ -358,61 +200,30 @@ const ParentProfile = () => {
         </div>
       </section>
 
-      {/* Evaluation System - Collapsible */}
       <section className="py-16 bg-gradient-to-br from-primary/5 to-secondary/5">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-8">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Sistema de Evaluación y Confianza</h2>
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Entendé cómo funciona el sistema de rankings que protege a tu hijo/a
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.evaluation.title")}</h2>
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">{t("parent.evaluation.subtitle")}</p>
           </div>
-
           <Collapsible open={evaluationOpen} onOpenChange={setEvaluationOpen}>
             <Card>
               <CardHeader>
                 <CollapsibleTrigger asChild>
                   <Button variant="ghost" className="w-full justify-between p-0 h-auto">
-                    <CardTitle className="text-2xl text-left">Rankings: Más allá de las Residencias</CardTitle>
+                    <CardTitle className="text-2xl text-left">{t("parent.evaluation.rankings.title")}</CardTitle>
                     <MessageCircle className={`h-5 w-5 transition-transform ${evaluationOpen ? 'rotate-180' : ''}`} />
                   </Button>
                 </CollapsibleTrigger>
-                <CardDescription className="text-base mt-2">
-                  Los rankings no son sólo para las residencias. Los estudiantes también son evaluados.
-                </CardDescription>
+                <CardDescription className="text-base mt-2">{t("parent.evaluation.rankings.desc")}</CardDescription>
               </CardHeader>
               <CollapsibleContent>
                 <CardContent className="space-y-6 pt-4">
                   <div>
-                    <h3 className="font-bold text-lg mb-3">¿Cómo se Evalúa a los Estudiantes?</h3>
-                    <p className="text-muted-foreground mb-4">
-                      La puntuación de cada estudiante es un mix entre las valoraciones de sus compañeros y las residencias.
-                    </p>
+                    <h3 className="font-bold text-lg mb-3">{t("student.behavior.concepts")}</h3>
                     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                      {["Orden", "Limpieza", "Interacciones", "Empatía", "Tolerancia", "Forma de ser"].map((concept) => (
-                        <div key={concept} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30">
-                          <Shield className="h-5 w-5 text-primary" />
-                          <span className="font-medium text-sm">{concept}</span>
-                        </div>
-                      ))}
+                      {concepts.map((concept) => (<div key={concept} className="flex items-center gap-2 p-3 rounded-lg bg-muted/30"><Shield className="h-5 w-5 text-primary" /><span className="font-medium text-sm">{concept}</span></div>))}
                     </div>
-                  </div>
-
-                  <div className="border-t pt-6">
-                    <h3 className="font-bold text-lg mb-3">Perfiles Completos = Mayor Confianza</h3>
-                    <ul className="space-y-2 text-sm text-muted-foreground">
-                      <li>✓ Mejores beneficios obtiene el estudiante</li>
-                      <li>✓ Más fácil es encontrar compañeros compatibles</li>
-                      <li>✓ Mayor confianza genera en residencias y la comunidad</li>
-                    </ul>
-                  </div>
-
-                  <div className="border-t pt-6">
-                    <h3 className="font-bold text-lg mb-3">Evaluación por Residencias</h3>
-                    <p className="text-muted-foreground">
-                      Las residencias evalúan a cada estudiante. Los llamados de atención influyen en el puntaje, 
-                      apareciendo solo la advertencia en el perfil, manteniendo la privacidad.
-                    </p>
                   </div>
                 </CardContent>
               </CollapsibleContent>
@@ -421,16 +232,12 @@ const ParentProfile = () => {
         </div>
       </section>
 
-      {/* Resources */}
       <section className="py-16 bg-muted/30">
         <div className="max-w-7xl mx-auto px-4">
           <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4">Recursos para Padres</h2>
-            <p className="text-lg text-muted-foreground">
-              Todas las herramientas que necesitás para estar tranquilo/a
-            </p>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("parent.resources.title")}</h2>
+            <p className="text-lg text-muted-foreground">{t("parent.resources.subtitle")}</p>
           </div>
-          
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {resources.map((resource, index) => {
               const Icon = resource.icon;
@@ -438,21 +245,12 @@ const ParentProfile = () => {
                 <Card key={index} className={`hover:shadow-lg transition-shadow ${resource.featured ? 'border-primary border-2' : ''}`}>
                   <CardHeader>
                     <div className="flex items-center gap-3 mb-2">
-                      <div className="h-12 w-12 rounded-xl bg-secondary/10 flex items-center justify-center">
-                        <Icon className="h-6 w-6 text-secondary" />
-                      </div>
-                      <div>
-                        <CardTitle className="text-lg">{resource.title}</CardTitle>
-                        {resource.featured && (
-                          <span className="text-xs text-primary font-semibold">Premium</span>
-                        )}
-                      </div>
+                      <div className="h-12 w-12 rounded-xl bg-secondary/10 flex items-center justify-center"><Icon className="h-6 w-6 text-secondary" /></div>
+                      <div><CardTitle className="text-lg">{resource.title}</CardTitle>{resource.featured && (<span className="text-xs text-primary font-semibold">Premium</span>)}</div>
                     </div>
                     <CardDescription>{resource.description}</CardDescription>
                   </CardHeader>
-                  <CardContent>
-                    <Button variant="outline" className="w-full">Explorar</Button>
-                  </CardContent>
+                  <CardContent><Button variant="outline" className="w-full">{t("student.resources.explore")}</Button></CardContent>
                 </Card>
               );
             })}
@@ -460,27 +258,11 @@ const ParentProfile = () => {
         </div>
       </section>
 
-      {/* Disclaimer */}
       <section className="py-16">
         <div className="max-w-4xl mx-auto px-4">
           <Card className="border-2 border-muted">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <FileText className="h-5 w-5" />
-                Descargo de Responsabilidad
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              <p>
-                Sin Fronteras actúa como plataforma de conexión entre estudiantes, padres y residencias. 
-                No somos responsables por los servicios otorgados, incidentes, o situaciones que ocurran en las residencias. 
-                Cada residencia es responsable de sus propios servicios, instalaciones y gestión.
-              </p>
-              <p className="mt-4">
-                Realizamos verificaciones periódicas y mantenemos estándares de calidad, pero la relación contractual 
-                y responsabilidad legal es directamente entre el estudiante/padre y la residencia elegida.
-              </p>
-            </CardContent>
+            <CardHeader><CardTitle className="flex items-center gap-2"><FileText className="h-5 w-5" />{t("parent.disclaimer.title")}</CardTitle></CardHeader>
+            <CardContent className="text-sm text-muted-foreground"><p>{t("parent.disclaimer.text")}</p></CardContent>
           </Card>
         </div>
       </section>
