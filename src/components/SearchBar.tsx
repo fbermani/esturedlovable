@@ -2,6 +2,7 @@ import { Search, MapPin, Home, Users, SlidersHorizontal } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import { useLanguage } from "@/contexts/LanguageContext";
 import {
   Sheet,
   SheetContent,
@@ -15,9 +16,27 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Slider } from "@/components/ui/slider";
 
 export const SearchBar = () => {
+  const { t } = useLanguage();
   const [roomType, setRoomType] = useState("");
   const [roommateRating, setRoommateRating] = useState([3]);
   const [residenceRating, setResidenceRating] = useState([3]);
+
+  const filters = [
+    { key: "filter.coordinator", label: t("filter.coordinator") },
+    { key: "filter.kitchen", label: t("filter.kitchen") },
+    { key: "filter.laundry", label: t("filter.laundry") },
+    { key: "filter.livingRoom", label: t("filter.livingRoom") },
+    { key: "filter.cameras", label: t("filter.cameras") },
+    { key: "filter.studyRoom", label: t("filter.studyRoom") },
+    { key: "filter.desk", label: t("filter.desk") },
+    { key: "filter.locker", label: t("filter.locker") },
+    { key: "filter.cleaning", label: t("filter.cleaning") },
+    { key: "filter.ownerManaged", label: t("filter.ownerManaged") },
+    { key: "filter.privateBathroom", label: t("filter.privateBathroom") },
+    { key: "filter.balcony", label: t("filter.balcony") },
+    { key: "filter.pets", label: t("filter.pets") },
+    { key: "filter.ac", label: t("filter.ac") },
+  ];
 
   return (
     <div className="bg-card rounded-2xl shadow-[var(--shadow-card)] p-2 max-w-5xl w-full">
@@ -25,7 +44,7 @@ export const SearchBar = () => {
         <div className="flex items-center gap-2 px-4 py-2 bg-background rounded-xl">
           <MapPin className="h-5 w-5 text-muted-foreground" />
           <Input
-            placeholder="Ubicación"
+            placeholder={t("search.location")}
             className="border-0 bg-transparent p-0 focus-visible:ring-0 focus-visible:ring-offset-0"
           />
         </div>
@@ -37,10 +56,10 @@ export const SearchBar = () => {
             value={roomType}
             onChange={(e) => setRoomType(e.target.value)}
           >
-            <option value="">Tipo de habitación</option>
-            <option value="individual">Habitación individual</option>
-            <option value="compartida">Habitación compartida</option>
-            <option value="apartamento">Apartamento Compartido</option>
+            <option value="">{t("search.roomType")}</option>
+            <option value="individual">{t("search.roomType.individual")}</option>
+            <option value="compartida">{t("search.roomType.shared")}</option>
+            <option value="apartamento">{t("search.roomType.apartment")}</option>
           </select>
         </div>
 
@@ -48,11 +67,11 @@ export const SearchBar = () => {
           <div className="flex items-center gap-2 px-4 py-2 bg-background rounded-xl">
             <Users className="h-5 w-5 text-muted-foreground" />
             <select className="border-0 bg-transparent p-0 w-full text-sm focus:outline-none text-foreground">
-              <option value="">Capacidad</option>
-              <option value="2">Doble</option>
-              <option value="3">Triple</option>
-              <option value="4">Cuádruple</option>
-              <option value="5">Quintuple</option>
+              <option value="">{t("search.capacity")}</option>
+              <option value="2">{t("search.capacity.double")}</option>
+              <option value="3">{t("search.capacity.triple")}</option>
+              <option value="4">{t("search.capacity.quadruple")}</option>
+              <option value="5">{t("search.capacity.quintuple")}</option>
             </select>
           </div>
         )}
@@ -61,41 +80,26 @@ export const SearchBar = () => {
           <SheetTrigger asChild>
             <Button variant="outline" className="gap-2 bg-background">
               <SlidersHorizontal className="h-5 w-5" />
-              Filtros
+              {t("search.filters")}
             </Button>
           </SheetTrigger>
           <SheetContent className="overflow-y-auto">
             <SheetHeader>
-              <SheetTitle>Filtros avanzados</SheetTitle>
+              <SheetTitle>{t("search.advancedFilters")}</SheetTitle>
               <SheetDescription>
-                Refiná tu búsqueda con características específicas
+                {t("search.refineSearch")}
               </SheetDescription>
             </SheetHeader>
             
             <div className="mt-6 space-y-6">
               <div>
-                <Label className="text-base font-semibold mb-3 block">Filtros</Label>
+                <Label className="text-base font-semibold mb-3 block">{t("search.filters")}</Label>
                 <div className="space-y-3">
-                  {[
-                    "Coordinador Presencial",
-                    "Cocina Equipada",
-                    "Lavandería",
-                    "Sala de Estar",
-                    "Cámaras de Seguridad",
-                    "Sala de Estudio",
-                    "Escritorio Personal en Hab.",
-                    "Locker de guardado",
-                    "Limpieza en Habitaciones",
-                    "Atendida por dueños",
-                    "Baño Privado x Hab",
-                    "Balcón",
-                    "Acepta Mascotas",
-                    "Aire Acondicionado"
-                  ].map((filter) => (
-                    <div key={filter} className="flex items-center space-x-2">
-                      <Checkbox id={filter} />
-                      <label htmlFor={filter} className="text-sm cursor-pointer">
-                        {filter}
+                  {filters.map((filter) => (
+                    <div key={filter.key} className="flex items-center space-x-2">
+                      <Checkbox id={filter.key} />
+                      <label htmlFor={filter.key} className="text-sm cursor-pointer">
+                        {filter.label}
                       </label>
                     </div>
                   ))}
@@ -104,7 +108,7 @@ export const SearchBar = () => {
 
               <div>
                 <Label className="text-base font-semibold mb-3 block">
-                  Calificación mínima de compañeros: {roommateRating[0]} ★
+                  {t("search.roommateRating")}: {roommateRating[0]} ★
                 </Label>
                 <Slider
                   value={roommateRating}
@@ -118,7 +122,7 @@ export const SearchBar = () => {
 
               <div>
                 <Label className="text-base font-semibold mb-3 block">
-                  Calificación mínima de residencia: {residenceRating[0]} ★
+                  {t("search.residenceRating")}: {residenceRating[0]} ★
                 </Label>
                 <Slider
                   value={residenceRating}
@@ -130,14 +134,14 @@ export const SearchBar = () => {
                 />
               </div>
 
-              <Button className="w-full">Aplicar filtros</Button>
+              <Button className="w-full">{t("search.applyFilters")}</Button>
             </div>
           </SheetContent>
         </Sheet>
         
         <Button variant="hero" size="lg" className="gap-2">
           <Search className="h-5 w-5" />
-          Buscar
+          {t("search.button")}
         </Button>
       </div>
     </div>

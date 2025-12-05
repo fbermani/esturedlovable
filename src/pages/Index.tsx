@@ -8,7 +8,9 @@ import { ProfileSelector } from "@/components/ProfileSelector";
 import { LoginDialog } from "@/components/LoginDialog";
 import { ResidenceContactForm } from "@/components/ResidenceContactForm";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import { LanguageSelector } from "@/components/LanguageSelector";
 import { ResidenceAssistant } from "@/components/ResidenceAssistant";
+import { useLanguage } from "@/contexts/LanguageContext";
 import { Menu, UserCircle, X } from "lucide-react";
 import { useState } from "react";
 import heroImage from "@/assets/hero-shared-room.jpg";
@@ -32,6 +34,7 @@ import {
 import Autoplay from "embla-carousel-autoplay";
 
 const Index = () => {
+  const { t } = useLanguage();
   const [loginOpen, setLoginOpen] = useState(false);
   const [contactFormOpen, setContactFormOpen] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -243,39 +246,40 @@ const Index = () => {
                 onClick={() => scrollToSection('featured-residences')} 
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                Buscar
+                {t("nav.search")}
               </button>
               <button 
                 onClick={() => scrollToSection('profile-selector')}
                 className="text-sm font-medium hover:text-primary transition-colors"
               >
-                ¿Quién sos?
+                {t("nav.whoAreYou")}
               </button>
               <a 
                 href="/estudiantes" 
                 className="text-sm font-medium hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
-                Para Estudiantes
+                {t("nav.forStudents")}
               </a>
               <a 
                 href="/padres" 
                 className="text-sm font-medium hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
-                Para Padres
+                {t("nav.forParents")}
               </a>
               <a 
                 href="/residencias-pms" 
                 className="text-sm font-medium hover:text-primary transition-colors"
                 onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               >
-                Para Residencias
+                {t("nav.forResidences")}
               </a>
             </nav>
           </div>
           
           <div className="flex items-center gap-3">
+            <LanguageSelector />
             <ThemeToggle />
             <Button 
               variant="ghost" 
@@ -283,7 +287,7 @@ const Index = () => {
               className="hidden md:flex"
               onClick={() => scrollToSection('cta-section')}
             >
-              Publicar residencia
+              {t("nav.publishResidence")}
             </Button>
             <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
               <SheetTrigger asChild>
@@ -293,48 +297,48 @@ const Index = () => {
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
                 <SheetHeader>
-                  <SheetTitle>Menú</SheetTitle>
+                  <SheetTitle>{t("nav.menu")}</SheetTitle>
                 </SheetHeader>
                 <nav className="flex flex-col gap-4 mt-8">
                   <button 
                     onClick={() => scrollToSection('featured-residences')}
                     className="text-left text-base font-medium hover:text-primary transition-colors py-2"
                   >
-                    Buscar
+                    {t("nav.search")}
                   </button>
                   <button 
                     onClick={() => scrollToSection('profile-selector')}
                     className="text-left text-base font-medium hover:text-primary transition-colors py-2"
                   >
-                    ¿Quién sos?
+                    {t("nav.whoAreYou")}
                   </button>
                   <a 
                     href="/estudiantes" 
                     className="text-base font-medium hover:text-primary transition-colors py-2"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   >
-                    Para Estudiantes
+                    {t("nav.forStudents")}
                   </a>
                   <a 
                     href="/padres" 
                     className="text-base font-medium hover:text-primary transition-colors py-2"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   >
-                    Para Padres
+                    {t("nav.forParents")}
                   </a>
                   <a 
                     href="/residencias-pms" 
                     className="text-base font-medium hover:text-primary transition-colors py-2"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                   >
-                    Para Residencias
+                    {t("nav.forResidences")}
                   </a>
                   <Button 
                     variant="outline" 
                     className="w-full mt-4"
                     onClick={() => scrollToSection('cta-section')}
                   >
-                    Publicar residencia
+                    {t("nav.publishResidence")}
                   </Button>
                 </nav>
               </SheetContent>
@@ -346,7 +350,7 @@ const Index = () => {
               onClick={() => setLoginOpen(true)}
             >
               <UserCircle className="h-4 w-4" />
-              <span className="hidden md:inline">Ingresar</span>
+              <span className="hidden md:inline">{t("nav.login")}</span>
             </Button>
           </div>
         </div>
@@ -407,11 +411,11 @@ const Index = () => {
         
         <div className="relative max-w-7xl mx-auto px-4 py-16 md:py-24">
           <div className="text-center mb-8">
-            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-              Tu hogar universitario<br />empieza con confianza
+            <h2 className="text-4xl md:text-6xl font-bold mb-6 text-white leading-tight drop-shadow-[0_4px_12px_rgba(0,0,0,0.8)] whitespace-pre-line">
+              {t("hero.title")}
             </h2>
             <p className="text-lg md:text-xl text-white/95 max-w-2xl mx-auto mb-8 font-medium drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-              Viví, estudiá y crecé en una comunidad segura, conectada y transparente
+              {t("hero.subtitle")}
             </p>
           </div>
           
@@ -435,15 +439,15 @@ const Index = () => {
         <div className="max-w-7xl mx-auto px-4">
           <div className="flex items-end justify-between mb-8">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold mb-2">Residencias destacadas</h2>
-              <p className="text-muted-foreground">Las mejores opciones verificadas para vos</p>
+              <h2 className="text-3xl md:text-4xl font-bold mb-2">{t("residences.title")}</h2>
+              <p className="text-muted-foreground">{t("residences.subtitle")}</p>
             </div>
             <Button 
               variant="link" 
               className="hidden md:flex"
               onClick={() => window.location.href = '/residencias'}
             >
-              Ver todas →
+              {t("residences.viewAll")}
             </Button>
           </div>
           
@@ -458,7 +462,7 @@ const Index = () => {
               variant="outline"
               onClick={() => window.location.href = '/residencias'}
             >
-              Ver todas las residencias
+              {t("residences.viewAllMobile")}
             </Button>
           </div>
         </div>
@@ -471,10 +475,10 @@ const Index = () => {
       <section id="cta-section" className="py-16 md:py-24 bg-gradient-to-br from-primary via-primary/90 to-secondary scroll-mt-16">
         <div className="max-w-4xl mx-auto px-4 text-center text-primary-foreground">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
-            ¿Tenés una residencia estudiantil?
+            {t("cta.title")}
           </h2>
           <p className="text-lg md:text-xl opacity-90 mb-8 max-w-2xl mx-auto">
-            Sumá tu residencia a nuestra plataforma y conectá con miles de estudiantes que buscan un hogar confiable
+            {t("cta.subtitle")}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button 
@@ -483,7 +487,7 @@ const Index = () => {
               className="bg-background text-primary hover:bg-background/90 border-0"
               onClick={() => setContactFormOpen(true)}
             >
-              Registrar mi residencia
+              {t("cta.contact")}
             </Button>
             <Button 
               size="lg" 
@@ -491,7 +495,7 @@ const Index = () => {
               className="border-2 border-primary-foreground text-primary-foreground bg-transparent hover:bg-primary-foreground/10"
               onClick={() => window.location.href = '/residencias-pms'}
             >
-              Conocer más
+              {t("cta.learnMore")}
             </Button>
           </div>
         </div>

@@ -8,6 +8,7 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/comp
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface Roommate {
   name: string;
@@ -56,6 +57,7 @@ export const ResidenceCard = ({
   services,
   availableRooms,
 }: ResidenceCardProps) => {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
@@ -84,7 +86,7 @@ export const ResidenceCard = ({
           {verified && (
             <Badge className="bg-secondary text-secondary-foreground gap-1">
               <Shield className="h-3 w-3" />
-              Verificada
+              {t("residences.verified")}
             </Badge>
           )}
         </div>
@@ -127,7 +129,7 @@ export const ResidenceCard = ({
         
         <div className="flex items-center gap-2 text-sm mb-4">
           <Users className="h-4 w-4 text-muted-foreground" />
-          <span className="text-muted-foreground">{currentResidents} residentes</span>
+          <span className="text-muted-foreground">{currentResidents} {t("residences.residents")}</span>
           <div className="flex items-center gap-1">
             <Star className="h-3 w-3 fill-accent text-accent" />
             <span className="font-semibold text-xs">{residentsRating}</span>
@@ -144,14 +146,14 @@ export const ResidenceCard = ({
                 </Badge>
                 <div className="flex items-baseline gap-1">
                   <span className="text-xl font-bold text-primary">${room.price.toLocaleString()}</span>
-                  <span className="text-xs text-muted-foreground">/mes</span>
+                  <span className="text-xs text-muted-foreground">{t("residences.perMonth")}</span>
                 </div>
               </div>
               
               <Collapsible>
                 <CollapsibleTrigger asChild>
                   <Button variant="ghost" className="w-full justify-between p-0 h-auto font-medium text-xs mb-2">
-                    {room.occupants.length > 0 ? 'Conocé a tus compañeros' : 'Ver habitación'}
+                    {room.occupants.length > 0 ? t("residences.meetRoommates") : t("residences.viewRoom")}
                     <ChevronDown className="h-3 w-3" />
                   </Button>
                 </CollapsibleTrigger>
@@ -183,7 +185,7 @@ export const ResidenceCard = ({
                         </div>
                         {occupant.score && (
                           <div className="text-[10px] text-primary font-semibold mb-0.5">
-                            {occupant.score} pts
+                            {occupant.score} {t("residences.pts")}
                           </div>
                         )}
                         <p className="text-[10px] text-muted-foreground line-clamp-1">{occupant.description}</p>
@@ -206,7 +208,7 @@ export const ResidenceCard = ({
             window.scrollTo({ top: 0, behavior: 'smooth' });
           }}
         >
-          Ver detalles
+          {t("residences.viewDetails")}
         </Button>
       </CardFooter>
     </Card>
