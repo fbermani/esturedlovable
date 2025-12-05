@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { MessageCircle, Send, X, Sparkles } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 type Message = { role: "user" | "assistant"; content: string };
 
@@ -76,6 +77,7 @@ async function streamChat({
 }
 
 export function ResidenceAssistant() {
+  const { t } = useLanguage();
   const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
@@ -149,7 +151,7 @@ export function ResidenceAssistant() {
           <div className="flex items-center justify-between gap-2 border-b bg-primary/5 px-4 py-3">
             <div className="flex items-center gap-2">
               <Sparkles className="h-5 w-5 text-primary" />
-              <span className="font-semibold text-foreground">Asistente de Residencias</span>
+              <span className="font-semibold text-foreground">{t("assistant.title")}</span>
             </div>
             <Button variant="ghost" size="icon" onClick={() => setIsOpen(false)} className="h-8 w-8">
               <X className="h-4 w-4" />
@@ -161,8 +163,8 @@ export function ResidenceAssistant() {
             {messages.length === 0 ? (
               <div className="flex flex-col items-center justify-center h-full text-center text-muted-foreground">
                 <Sparkles className="h-10 w-10 mb-3 text-primary/50" />
-                <p className="text-sm">¡Hola! Soy tu asistente para encontrar la residencia perfecta.</p>
-                <p className="text-xs mt-1">Pregúntame sobre ubicaciones, tipos de habitación o amenidades.</p>
+                <p className="text-sm">{t("assistant.welcome")}</p>
+                <p className="text-xs mt-1">{t("assistant.welcomeHint")}</p>
               </div>
             ) : (
               <div className="space-y-4">
@@ -208,7 +210,7 @@ export function ResidenceAssistant() {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 onKeyDown={handleKeyDown}
-                placeholder="Escribe tu pregunta..."
+                placeholder={t("assistant.placeholder")}
                 className="flex-1"
                 disabled={isLoading}
               />

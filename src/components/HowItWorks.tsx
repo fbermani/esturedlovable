@@ -1,29 +1,32 @@
 import { Search, UserCheck, Home, Award } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const HowItWorks = () => {
+  const { t } = useLanguage();
+
   const steps = [
     {
       icon: Search,
-      title: "Explorá",
-      description: "Buscá residencias verificadas en tu ciudad universitaria",
+      titleKey: "howItWorks.step1.title",
+      descriptionKey: "howItWorks.step1.description",
       color: "bg-primary/10 text-primary",
     },
     {
       icon: UserCheck,
-      title: "Conectá",
-      description: "Conocé a tus futuros compañeros antes de reservar",
+      titleKey: "howItWorks.step2.title",
+      descriptionKey: "howItWorks.step2.description",
       color: "bg-secondary/10 text-secondary",
     },
     {
       icon: Home,
-      title: "Reservá",
-      description: "Confirmá tu lugar de forma segura y transparente",
+      titleKey: "howItWorks.step3.title",
+      descriptionKey: "howItWorks.step3.description",
       color: "bg-accent/10 text-accent",
     },
     {
       icon: Award,
-      title: "Sumá puntos",
-      description: "Ganá beneficios por buena convivencia y referencias",
+      titleKey: "howItWorks.step4.title",
+      descriptionKey: "howItWorks.step4.description",
       color: "bg-primary/10 text-primary",
     },
   ];
@@ -32,9 +35,9 @@ export const HowItWorks = () => {
     <section className="py-16 md:py-24">
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">¿Cómo funciona?</h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">{t("howItWorks.title")}</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Encontrá tu hogar universitario en 4 simples pasos
+            {t("howItWorks.subtitle")}
           </p>
         </div>
 
@@ -53,8 +56,8 @@ export const HowItWorks = () => {
                   </div>
                   
                   <div>
-                    <h3 className="font-bold text-xl mb-2">{step.title}</h3>
-                    <p className="text-muted-foreground">{step.description}</p>
+                    <h3 className="font-bold text-xl mb-2">{t(step.titleKey)}</h3>
+                    <p className="text-muted-foreground">{t(step.descriptionKey)}</p>
                   </div>
                 </div>
                 

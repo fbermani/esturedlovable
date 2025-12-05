@@ -1,21 +1,24 @@
 import { Shield, Calendar, Gift } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export const TrustBadges = () => {
+  const { t } = useLanguage();
+
   const badges = [
     {
       icon: Shield,
-      title: "Residencias y Perfiles Verificados",
-      description: "Validamos todas las residencias y usuarios",
+      titleKey: "trust.verified.title",
+      descriptionKey: "trust.verified.description",
     },
     {
       icon: Calendar,
-      title: "Disponibilidad Real",
-      description: "Información actualizada en tiempo real",
+      titleKey: "trust.availability.title",
+      descriptionKey: "trust.availability.description",
     },
     {
       icon: Gift,
-      title: "Beneficios Exclusivos",
-      description: "Descuentos y premios por puntos",
+      titleKey: "trust.benefits.title",
+      descriptionKey: "trust.benefits.description",
     },
   ];
 
@@ -29,8 +32,8 @@ export const TrustBadges = () => {
               <Icon className="h-6 w-6 text-primary" />
             </div>
             <div>
-              <p className="font-semibold text-sm md:text-base text-white drop-shadow-lg">{badge.title}</p>
-              <p className="text-xs md:text-sm text-white/80 drop-shadow-md">{badge.description}</p>
+              <p className="font-semibold text-sm md:text-base text-white drop-shadow-lg">{t(badge.titleKey)}</p>
+              <p className="text-xs md:text-sm text-white/80 drop-shadow-md">{t(badge.descriptionKey)}</p>
             </div>
           </div>
         );

@@ -1,6 +1,7 @@
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { GraduationCap, Users, Building } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 interface LoginDialogProps {
   open: boolean;
@@ -8,25 +9,26 @@ interface LoginDialogProps {
 }
 
 export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
+  const { t } = useLanguage();
   const navigate = useNavigate();
 
   const profiles = [
     {
       icon: GraduationCap,
-      title: "Estudiante",
-      description: "Accedé a tu perfil de estudiante",
+      titleKey: "profile.student",
+      descriptionKey: "login.student.description",
       route: "/estudiantes",
     },
     {
       icon: Users,
-      title: "Padre/Madre",
-      description: "Accedé a tu perfil de padre",
+      titleKey: "profile.parent",
+      descriptionKey: "login.parent.description",
       route: "/padres",
     },
     {
       icon: Building,
-      title: "Residencia",
-      description: "Accedé al panel de gestión",
+      titleKey: "profile.residence",
+      descriptionKey: "login.residence.description",
       route: "/residencias-pms",
     },
   ];
@@ -40,11 +42,11 @@ export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent className="sm:max-w-md">
         <DialogHeader>
-          <DialogTitle className="text-2xl text-center">Ingresar</DialogTitle>
+          <DialogTitle className="text-2xl text-center">{t("login.title")}</DialogTitle>
         </DialogHeader>
         <div className="space-y-4 py-4">
           <p className="text-center text-muted-foreground mb-6">
-            Seleccioná tu tipo de perfil para continuar
+            {t("login.selectProfile")}
           </p>
           <div className="space-y-3">
             {profiles.map((profile, index) => {
@@ -59,8 +61,8 @@ export const LoginDialog = ({ open, onOpenChange }: LoginDialogProps) => {
                     <Icon className="h-6 w-6 text-primary" />
                   </div>
                   <div className="text-left">
-                    <p className="font-semibold">{profile.title}</p>
-                    <p className="text-sm text-muted-foreground">{profile.description}</p>
+                    <p className="font-semibold">{t(profile.titleKey)}</p>
+                    <p className="text-sm text-muted-foreground">{t(profile.descriptionKey)}</p>
                   </div>
                 </button>
               );
