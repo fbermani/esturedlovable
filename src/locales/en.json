@@ -1,0 +1,580 @@
+{
+  "nav": {
+    "search": "Search",
+    "whoAreYou": "Who are you?",
+    "forStudents": "For Students",
+    "forParents": "For Parents",
+    "forResidences": "For Residences",
+    "publishResidence": "Publish residence",
+    "menu": "Menu",
+    "login": "Login",
+    "back": "← Back"
+  },
+  "hero": {
+    "title": "Your university home\nstarts with trust",
+    "subtitle": "Live, study and grow in a safe, connected and transparent community"
+  },
+  "trust": {
+    "verified": {
+      "title": "Verified Residences and Profiles",
+      "description": "We validate all residences and users"
+    },
+    "availability": {
+      "title": "Real Availability",
+      "description": "Real-time updated information"
+    },
+    "benefits": {
+      "title": "Exclusive Benefits",
+      "description": "Discounts and rewards by points"
+    }
+  },
+  "search": {
+    "location": "Location",
+    "roomType": "Room type",
+    "roomTypeIndividual": "Single room",
+    "roomTypeShared": "Shared room",
+    "roomTypeApartment": "Shared Apartment",
+    "capacity": "Capacity",
+    "capacityDouble": "Double",
+    "capacityTriple": "Triple",
+    "capacityQuadruple": "Quadruple",
+    "capacityQuintuple": "Quintuple",
+    "filters": "Filters",
+    "advancedFilters": "Advanced filters",
+    "refineSearch": "Refine your search with specific features",
+    "button": "Search",
+    "applyFilters": "Apply filters",
+    "roommateRating": "Minimum roommate rating",
+    "residenceRating": "Minimum residence rating"
+  },
+  "filter": {
+    "coordinator": "On-site Coordinator",
+    "kitchen": "Equipped Kitchen",
+    "laundry": "Laundry",
+    "livingRoom": "Living Room",
+    "cameras": "Security Cameras",
+    "studyRoom": "Study Room",
+    "desk": "Personal Desk in Room",
+    "locker": "Storage Locker",
+    "cleaning": "Room Cleaning",
+    "ownerManaged": "Owner Managed",
+    "privateBathroom": "Private Bathroom",
+    "balcony": "Balcony",
+    "pets": "Pets Allowed",
+    "ac": "Air Conditioning"
+  },
+  "profile": {
+    "title": "Who are you?",
+    "subtitle": "Select your profile to access exclusive benefits and a personalized experience",
+    "student": "Student",
+    "studentSubtitle": "Find your ideal home",
+    "studentBenefit1": "Search verified residences",
+    "studentBenefit2": "Meet your future roommates",
+    "studentBenefit3": "Points and discounts system",
+    "studentBenefit4": "Access to exclusive resources",
+    "parent": "Parent",
+    "parentSubtitle": "Safety for your child",
+    "parentBenefit1": "Verified and safe residences",
+    "parentBenefit2": "Parent community",
+    "parentBenefit3": "Direct communication with residences",
+    "parentBenefit4": "Hotel and transport benefits",
+    "residence": "Residence",
+    "residenceSubtitle": "Manage your property",
+    "residenceBenefit1": "Free integrated PMS",
+    "residenceBenefit2": "Real-time availability",
+    "residenceBenefit3": "Access to thousands of students",
+    "residenceBenefit4": "Service discounts",
+    "mainBenefits": "Main benefits:",
+    "hide": "Hide",
+    "showDetails": "Show details",
+    "seeMore": "See more"
+  },
+  "residences": {
+    "title": "Featured Residences",
+    "subtitle": "The best verified options for you",
+    "viewAll": "View all →",
+    "viewAllMobile": "View all residences",
+    "verified": "Verified",
+    "residents": "residents",
+    "meetRoommates": "Meet your roommates",
+    "viewRoom": "View room",
+    "viewDetails": "View details",
+    "perMonth": "/month",
+    "pts": "pts"
+  },
+  "howItWorks": {
+    "title": "How does it work?",
+    "subtitle": "Find your university home in 4 simple steps",
+    "step1Title": "Explore",
+    "step1Description": "Search verified residences in your university city",
+    "step2Title": "Connect",
+    "step2Description": "Meet your future roommates before booking",
+    "step3Title": "Book",
+    "step3Description": "Confirm your place safely and transparently",
+    "step4Title": "Earn points",
+    "step4Description": "Get benefits for good coexistence and referrals"
+  },
+  "cta": {
+    "title": "Do you have a student residence?",
+    "subtitle": "Add your residence to our platform and connect with thousands of students looking for a reliable home",
+    "contact": "Contact us",
+    "learnMore": "Learn more"
+  },
+  "footer": {
+    "tagline": "Your university home starts with trust. Live, learn and grow in a safe and connected community.",
+    "forStudents": "For Students",
+    "searchResidences": "Search residences",
+    "createProfile": "Create profile",
+    "premiumBenefits": "Premium Benefits",
+    "resources": "Resources",
+    "forResidences": "For Residences",
+    "registerResidence": "Register residence",
+    "managementPanel": "Management panel",
+    "pricing": "Pricing",
+    "support": "Support",
+    "followUs": "Follow us",
+    "rights": "© 2025 Sin Fronteras. All rights reserved."
+  },
+  "login": {
+    "title": "Login",
+    "selectProfile": "Select your profile type to continue",
+    "studentDescription": "Access your student profile",
+    "parentDescription": "Access your parent profile",
+    "residenceDescription": "Access the management panel"
+  },
+  "notFound": {
+    "title": "404",
+    "message": "Oops! Page not found",
+    "returnHome": "Return to Home"
+  },
+  "assistant": {
+    "title": "Search Assistant",
+    "placeholder": "What type of residence are you looking for?",
+    "send": "Send",
+    "welcome": "Hi! I'm your assistant to find the perfect residence.",
+    "welcomeHint": "Ask me about locations, room types, or amenities."
+  },
+  "student": {
+    "hero": {
+      "title": "Student Portal",
+      "subtitle": "Find your ideal residence, connect with roommates and access exclusive resources"
+    },
+    "behavior": {
+      "title": "Your Behavior Also Counts",
+      "subtitle": "Rankings aren't just for residences. Your behavior has a score and benefits.",
+      "howItWorks": "How Does Your Score Work?",
+      "howItWorksDesc": "Your score is a mix between ratings from your past or current roommates, and the residence's rating of you.",
+      "concepts": "Valued Coexistence Concepts:",
+      "order": "Order",
+      "cleanliness": "Cleanliness",
+      "interactions": "Interactions",
+      "empathy": "Empathy",
+      "tolerance": "Tolerance",
+      "personality": "Personality",
+      "profileDecision": "Your Profile, Your Decision:",
+      "profileDecisionDesc": "Each student writes what they want on their profile to describe themselves, and chooses what to show publicly.",
+      "profileTip": "💡 The more you complete and show your profile:",
+      "profileBenefit1": "Better benefits you get",
+      "profileBenefit2": "More likely to find matching roommates",
+      "profileBenefit3": "Greater trust you generate",
+      "residenceEval": "Residence Evaluation:",
+      "residenceEvalDesc": "Residences also complete a profile for each student. Warnings or expulsions affect the score, with only the warning appearing on each profile."
+    },
+    "points": {
+      "title": "Points and Badges System",
+      "subtitle": "Earn benefits while helping the community"
+    },
+    "badges": {
+      "title": "Badge Levels",
+      "benefits": "Benefits:"
+    },
+    "resources": {
+      "title": "Student Resources",
+      "subtitle": "Take advantage of all available tools for your university life",
+      "explore": "Explore"
+    },
+    "coexistence": {
+      "title": "Basic Coexistence Rules",
+      "subtitle": "Fundamental principles for harmonious coexistence",
+      "respectTitle": "Mutual Respect",
+      "respectDesc": "Respect your roommates' study and rest schedules. Empathy is key.",
+      "communicationTitle": "Clear Communication",
+      "communicationDesc": "Talk openly about expectations and needs. Communication prevents conflicts.",
+      "responsibilityTitle": "Shared Responsibility",
+      "responsibilityDesc": "Participate in cleaning and maintaining common areas. We are all responsible."
+    },
+    "badge": {
+      "novice": "Novice",
+      "noviceReq": "0-100 points",
+      "noviceDesc": "You're starting your journey. Complete your profile and make your first evaluation.",
+      "noviceBenefit1": "Basic portal access",
+      "noviceBenefit2": "Residence search",
+      "bronze": "Bronze",
+      "bronzeReq": "100-300 points",
+      "bronzeDesc": "Good start! You have positive evaluations and your profile is complete.",
+      "bronzeBenefit1": "10% discount on first booking",
+      "bronzeBenefit2": "Priority in responses",
+      "silver": "Silver",
+      "silverReq": "300-600 points",
+      "silverDesc": "Excellent coexistence. Your roommates and residences value you positively.",
+      "silverBenefit1": "15% discount",
+      "silverBenefit2": "Visible badge on profile",
+      "silverBenefit3": "Access to exclusive events",
+      "gold": "Gold",
+      "goldReq": "600-1000 points",
+      "goldDesc": "You're an example of coexistence. Your behavior is highlighted.",
+      "goldBenefit1": "20% discount",
+      "goldBenefit2": "Priority in bookings",
+      "goldBenefit3": "VIP access to new residences",
+      "platinum": "Platinum",
+      "platinumReq": "1000+ points",
+      "platinumDesc": "Maximum level! You're a reference in the community.",
+      "platinumBenefit1": "25% permanent discount",
+      "platinumBenefit2": "Ambassador program",
+      "platinumBenefit3": "Lifetime premium benefits"
+    },
+    "resource": {
+      "tutoringTitle": "Tutoring and Academic Support",
+      "tutoringDesc": "Connect with verified tutors or offer your help to other students",
+      "coexistenceTitle": "Coexistence Guide",
+      "coexistenceDesc": "Learn best practices for harmonious coexistence",
+      "ratingsTitle": "Rating System",
+      "ratingsDesc": "Understand how reviews and ratings work between roommates",
+      "studentResourcesTitle": "Student Resources",
+      "studentResourcesDesc": "Discounts on courses, gyms, events and more exclusive benefits"
+    }
+  },
+  "parent": {
+    "hero": {
+      "title": "Parent Portal",
+      "subtitle": "Support your child with peace of mind and security. Connect with the community and access exclusive resources.",
+      "joinCommunity": "Join Premium Community",
+      "viewResidences": "View Verified Residences"
+    },
+    "privacy": {
+      "title": "Privacy and Security",
+      "desc": "Your profile is linked to your child's through ID verification. For privacy reasons, you can contact other parents but not students directly.",
+      "access": "You'll have full access to:",
+      "access1": "Residence information and legal documentation",
+      "access2": "Parent forum and private discussion groups",
+      "access3": "Direct communication with residences",
+      "access4": "Your child's profile and evaluations",
+      "policy": "View Privacy Policy"
+    },
+    "verification": {
+      "title": "Residence Verification Process",
+      "subtitle": "We guarantee the quality and safety of each residence on our platform",
+      "visitsTitle": "Personal Visits",
+      "visitsDesc": "We personally tour all residences and verify the facilities and services offered.",
+      "responsibleTitle": "We Meet the Managers",
+      "responsibleDesc": "We meet with owners and coordinators to ensure commitment to quality.",
+      "feedbackTitle": "Student Feedback",
+      "feedbackDesc": "We talk with current students to get honest feedback about each residence.",
+      "improvementsTitle": "Improvement Plan",
+      "improvementsDesc": "We implement an improvement plan and provide suggestions to increase quality."
+    },
+    "community": {
+      "badge": "COMMUNITY",
+      "title": "Parent Community",
+      "subtitle": "Connect with other parents going through the same experience. Share tips, concerns and solutions.",
+      "forumTitle": "Discussion Forum",
+      "forumDesc": "Participate in conversations about housing, security and university experiences",
+      "eventsTitle": "Events and Meetups",
+      "eventsDesc": "Meet other parents at organized events when you visit your child",
+      "discountsTitle": "Exclusive Discounts",
+      "discountsDesc": "Access discounts on hotels, transport and services for your visits"
+    },
+    "points": {
+      "title": "Points and Badges System",
+      "subtitle": "Earn benefits while helping other parents and participating in the community"
+    },
+    "badges": {
+      "title": "Membership Levels"
+    },
+    "evaluation": {
+      "title": "Evaluation and Trust System",
+      "subtitle": "Understand how the ranking system that protects your child works",
+      "rankingsTitle": "Rankings: Beyond Residences",
+      "rankingsDesc": "Rankings aren't just for residences. Students are also evaluated."
+    },
+    "resources": {
+      "title": "Resources for Parents",
+      "subtitle": "Everything you need to support your child at this stage"
+    },
+    "disclaimer": {
+      "title": "⚠️ Important",
+      "text": "Sin Fronteras is a connection and management platform. We are not financial intermediaries nor directly responsible for residence operations."
+    },
+    "badge": {
+      "newMember": "New Member",
+      "newMemberReq": "0-50 points",
+      "newMemberDesc": "Welcome to the community. Start participating and meeting other parents.",
+      "newMemberBenefit1": "Basic forum access",
+      "newMemberBenefit2": "View verified residences",
+      "collaborator": "Collaborator",
+      "collaboratorReq": "50-150 points",
+      "collaboratorDesc": "You're actively participating in the community sharing experiences.",
+      "collaboratorBenefit1": "5% discount on events",
+      "collaboratorBenefit2": "Access to private groups",
+      "collaboratorBenefit3": "Monthly newsletter",
+      "active": "Active Member",
+      "activeReq": "150-350 points",
+      "activeDesc": "Your participation is valuable. You help other parents with your advice.",
+      "activeBenefit1": "10% discount on hotels",
+      "activeBenefit2": "Premium event invitations",
+      "activeBenefit3": "Priority advisory",
+      "expert": "Expert",
+      "expertReq": "350-600 points",
+      "expertDesc": "You're a reference in the community. Your contributions are highly valued.",
+      "expertBenefit1": "15% permanent discount",
+      "expertBenefit2": "Group moderator",
+      "expertBenefit3": "VIP access to resources",
+      "ambassador": "Ambassador",
+      "ambassadorReq": "600+ points",
+      "ambassadorDesc": "Maximum level. You represent the best of our parent community.",
+      "ambassadorBenefit1": "20% lifetime discount",
+      "ambassadorBenefit2": "Exclusive events",
+      "ambassadorBenefit3": "Platform decision participation"
+    },
+    "resource": {
+      "communityTitle": "Parent Community",
+      "communityDesc": "Connect with other parents, share experiences and get advice",
+      "securityTitle": "Security Guide",
+      "securityDesc": "Everything you need to know about your child's safety",
+      "behaviorTitle": "Behavior Manual",
+      "behaviorDesc": "Rules and regulations of student residences",
+      "discountsTitle": "Discounts and Benefits",
+      "discountsDesc": "Access to discounts on hotels, transport and tourism services",
+      "communicationTitle": "Communication with Residences",
+      "communicationDesc": "Direct and transparent contact with residences",
+      "supportTitle": "Support Resources",
+      "supportDesc": "Practical guides to help your child in university life"
+    }
+  },
+  "pms": {
+    "badge": "PROFESSIONAL MANAGEMENT SYSTEM",
+    "hero": {
+      "title": "PMS for Student Residences",
+      "subtitle": "Professionalize your residence with our complete management system. Everything you need in one platform.",
+      "demo": "Request Free Demo",
+      "pricing": "View Pricing"
+    },
+    "features": {
+      "title": "PMS Features",
+      "subtitle": "Everything you need to manage your residence professionally",
+      "studentsTitle": "Student Management",
+      "studentsDesc": "Register and manage all your residents' information",
+      "paymentsTitle": "Payment Control",
+      "paymentsDesc": "Automatic tracking of payments, installments and late fees",
+      "maintenanceTitle": "Maintenance",
+      "maintenanceDesc": "Incident management and maintenance requests",
+      "docsTitle": "Documentation",
+      "docsDesc": "Secure storage of contracts and legal documents",
+      "reportsTitle": "Reports and Statistics",
+      "reportsDesc": "Real-time financial and operational analysis",
+      "panelTitle": "Integrated Panel",
+      "panelDesc": "Everything you need in one place, easy to use"
+    },
+    "benefits": {
+      "title": "System Benefits",
+      "subtitle": "Transform your residence with our comprehensive platform",
+      "syncTitle": "Automatic Synchronization",
+      "syncDesc": "Your public profile on the portal is automatically updated from the PMS. Real-time availability without duplicating work.",
+      "visibilityTitle": "Greater Visibility",
+      "visibilityDesc": "Appear in searches by thousands of verified students and parents. Increase your occupancy up to 40%.",
+      "reputationTitle": "Reputation System",
+      "reputationDesc": "Improve your positioning with good ratings and earn up to 20% discount on your monthly plan.",
+      "supportTitle": "24/7 Dedicated Support",
+      "supportDesc": "Technical support team available to help you with any questions or problems."
+    },
+    "points": {
+      "title": "Points and Badges System",
+      "subtitle": "Improve your service and get significant discounts on your monthly plan"
+    },
+    "badges": {
+      "title": "Certification Levels"
+    },
+    "evaluation": {
+      "title": "Bidirectional Evaluation System",
+      "subtitle": "On our platform, you don't just evaluate: you are also evaluated. A fair system that benefits everyone.",
+      "improveTitle": "Evaluate and Continuously Improve",
+      "improveDesc": "Rankings aren't just for residences. Students also have scores.",
+      "howToTitle": "How Do You Evaluate Your Residents?",
+      "howToDesc": "You can evaluate each student on coexistence concepts.",
+      "benefitsTitle": "System Benefits",
+      "forResidence": "For Your Residence:",
+      "forResidence1": "Attract responsible and verified students",
+      "forResidence2": "Reduce conflicts with prior information",
+      "forResidence3": "Improve your reputation with positive evaluations",
+      "forStudents": "For Students:",
+      "forStudents1": "They know the quality of your residence before booking",
+      "forStudents2": "Fair system based on real experiences",
+      "forStudents3": "Incentive to maintain good coexistence"
+    },
+    "resources": {
+      "title": "Additional Resources",
+      "subtitle": "Access verified providers and exclusive services for your residence",
+      "providersTitle": "Verified Providers",
+      "providersDesc": "Access reliable cleaning, maintenance and service providers",
+      "accountingTitle": "Accounting Advisory",
+      "accountingDesc": "Accounting and tax resources to manage your residence",
+      "hrTitle": "Human Resources",
+      "hrDesc": "Guides for hiring staff and managing teams",
+      "practicesTitle": "Best Practices",
+      "practicesDesc": "Learn from the best residences and continuously improve"
+    },
+    "cta": {
+      "title": "Ready to professionalize your residence?",
+      "subtitle": "Join the network of verified residences and access thousands of students looking for accommodation",
+      "demo": "Request Free Demo"
+    },
+    "badgeLevel": {
+      "initial": "Initial",
+      "initialReq": "0-100 points",
+      "initialDesc": "New residence on the platform. Start building your reputation.",
+      "initialBenefit1": "Basic listing",
+      "initialBenefit2": "No plan discounts",
+      "bronze": "Bronze",
+      "bronzeReq": "100-300 points | 4.0+ ★",
+      "bronzeDesc": "Good first evaluations. Your residents are satisfied.",
+      "bronzeBenefit1": "5% discount on monthly plan",
+      "bronzeBenefit2": "Visible badge",
+      "bronzeBenefit3": "Search priority",
+      "silver": "Silver",
+      "silverReq": "300-600 points | 4.3+ ★",
+      "silverDesc": "Excellent reputation. Professional management recognized.",
+      "silverBenefit1": "10% permanent discount",
+      "silverBenefit2": "Featured in results",
+      "silverBenefit3": "Priority support",
+      "gold": "Gold",
+      "goldReq": "600-1000 points | 4.6+ ★",
+      "goldDesc": "Reference residence. Superior quality in all aspects.",
+      "goldBenefit1": "15% discount",
+      "goldBenefit2": "'Featured' section",
+      "goldBenefit3": "Access to ambassador program",
+      "platinum": "Platinum",
+      "platinumReq": "1000+ points | 4.8+ ★",
+      "platinumDesc": "Maximum level of excellence. Role model in the industry.",
+      "platinumBenefit1": "20% lifetime discount",
+      "platinumBenefit2": "Free premium advertising",
+      "platinumBenefit3": "Feature development participation"
+    }
+  },
+  "allResidences": {
+    "available": {
+      "title": "Available Residences",
+      "subtitle": "Book now and secure your spot"
+    },
+    "unavailable": {
+      "title": "Currently Unavailable",
+      "subtitle": "Sign up for the waitlist to receive notifications",
+      "badge": "Unavailable"
+    },
+    "viewInfo": "View full information",
+    "notify": "Notify me when available",
+    "waitlist": {
+      "title": "Waitlist",
+      "desc": "We'll notify you when there's availability at",
+      "tipTitle": "💡 Important Tip",
+      "tipDesc": "Complete your student profile for priority. Residences can choose which students to contact based on their profiles.",
+      "roomType": "Room type of interest",
+      "selectType": "Select type",
+      "individual": "Single",
+      "double": "Double",
+      "triple": "Triple",
+      "quadruple": "Quadruple",
+      "email": "Notification email",
+      "join": "Join waitlist",
+      "success": "We'll notify you when there's availability! Complete your profile for priority."
+    }
+  },
+  "details": {
+    "verified": "Verified",
+    "reviews": "reviews",
+    "sendQuery": "Send chat query",
+    "book": "Book",
+    "about": {
+      "title": "About the residence"
+    },
+    "services": {
+      "title": "Services"
+    },
+    "commonAreas": {
+      "title": "Common areas"
+    },
+    "availability": {
+      "title": "Room availability"
+    },
+    "room": {
+      "male": "♂ Male",
+      "female": "♀ Female",
+      "available": "available",
+      "of": "of",
+      "month": "/month",
+      "deposit": "+ Deposit",
+      "enrollment": "+ Enrollment",
+      "meetRoommates": "Meet your roommates",
+      "viewProfile": "View profile →",
+      "emptyBed": "Available bed",
+      "bookThisRoom": "Book this room"
+    },
+    "residents": {
+      "title": "All Residents",
+      "viewAll": "View all residents",
+      "current": "current residents"
+    },
+    "contact": {
+      "title": "Contact information",
+      "phone": "Phone",
+      "phoneHidden": "Visible when booking",
+      "address": "Address",
+      "addressHidden": "Visible when booking"
+    }
+  },
+  "booking": {
+    "title": "Booking Form",
+    "studentData": "Student Data",
+    "firstName": "First Name",
+    "lastName": "Last Name",
+    "email": "Email",
+    "phone": "Phone",
+    "dni": "ID Number",
+    "university": "University",
+    "stayPeriod": "Stay Period",
+    "startDate": "Check-in date",
+    "endDate": "Check-out date (estimated)",
+    "monthlyPrice": "Monthly price",
+    "deposit": "Deposit (1 month)",
+    "totalInitial": "Initial total",
+    "cancel": "Cancel",
+    "continueToPayment": "Continue to payment",
+    "paymentInfo": "Payment Information",
+    "cardNumber": "Card number",
+    "expiry": "Expiry",
+    "cvv": "CVV",
+    "cardName": "Name on card",
+    "totalToPay": "Total to pay",
+    "paymentNote": "First month + deposit will be charged",
+    "back": "Back",
+    "confirmPayment": "Confirm payment"
+  },
+  "contactForm": {
+    "title": "Register my residence",
+    "desc1": "To appear in our listing, the only condition is to use our free PMS, which connects real-time availability with our search engine.",
+    "desc2": "Your residence must pass our verification process to guarantee community trust.",
+    "fullName": "Full name *",
+    "email": "Email *",
+    "phone": "Phone *",
+    "residenceName": "Residence name *",
+    "message": "Additional message",
+    "messagePlaceholder": "Tell us about your residence...",
+    "submit": "Submit request",
+    "success": "Thank you for your interest! We'll contact you soon."
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "retry": "Retry",
+    "required": "Required field"
+  }
+}
